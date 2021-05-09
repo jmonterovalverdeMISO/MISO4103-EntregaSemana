@@ -13,6 +13,12 @@ if ENV["ADB_DEVICE_ARG"].nil?
     
   end
 
+  When(/^I enter "([^\"]*)" into active field/) do |text|
+    @driver.switch_to().active_element().send_keys(text)
+    sleep 2
+  end
+
+
   Given(/^I am authenticated/) do
     $url_variable = IO.read("./.userAuthenticated.txt") 
     raise 'ERROR: user not logged in' unless $url_variable == "User logged in"
