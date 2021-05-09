@@ -13,13 +13,12 @@ context('Create Post - ', () => {
   });
 
   it('creates post', () => {
-    cy.url().should('include', 'ghost/#/dashboard');
+    cy.url().should('include', 'ghost/#/site');
     menuPage.getPostsLink().click();
     cy.wait(5000);
     cy.url().should('include', 'ghost/#/posts');
-    postsPage.getNewPostBytton().click();
+    postsPage.getNewPostButton().click();
     cy.url().should('include', 'ghost/#/editor/post');
-    postsPage.getTitleField().click();
     postsPage.getTitleField().click();
     postsPage.getBackToPostsPageButton().click();
     cy.wait(5000);

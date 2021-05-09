@@ -13,7 +13,7 @@ context('Ghost - ', () => {
   });
 
   it('creates empty post', () => {
-    cy.url().should('include', 'ghost/#/dashboard');
+    cy.url().should('include', 'ghost/#/site');
     menuPage.getDirectNewPostLink().click();
     cy.wait(5000);
     cy.url().should('include', 'ghost/#/editor/post');
@@ -40,7 +40,7 @@ context('Ghost - ', () => {
     postsPage.getScheduleButton().click();
     cy.wait(3000);
     
-    postsPage.getHearderStatusLabelForScheduledPosts().should('contain.text', 'Will be published '); 
+    postsPage.getHearderStatusLabelForScheduledPosts().should('contain.text', 'Scheduled to be published '); 
     postsPage.getBackToPostsPageButton().click();
     cy.url().should('include', 'ghost/#/posts');
     //this is a workaround given that cypress will break if we use the filtering manu on top of the page

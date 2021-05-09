@@ -11,7 +11,7 @@ class PostsListPage{
     }
 
     getLastDraftPost(){
-        return cy.get('span:contains("Draft").gh-content-status-draft.gh-badge.gh-badge-pink.nowrap').first();
+        return cy.get('span:contains("Draft").gh-content-status-draft.gh-badge.gh-badge-purple.nowrap').first();
     }
 
     getLastPublishedPost(){
@@ -24,7 +24,7 @@ class PostsListPage{
     }
 
     getLastDraftPostTitle(){
-        return cy.get('span:contains("Draft").gh-content-status-draft.gh-badge.gh-badge-pink.nowrap').first()
+        return cy.get('span:contains("Draft").gh-content-status-draft.gh-badge.gh-badge-purple.nowrap').first()
         .parent().parent().parent().find('.gh-content-entry-title');
     }
 

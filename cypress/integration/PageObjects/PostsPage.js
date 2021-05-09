@@ -2,8 +2,8 @@
 
 class PostsPage{
 
-    getNewPostBytton(){
-        return cy.get('.ember-view.gh-btn.gh-btn-primary.view-actions-top-row[href="#/editor/post/"]');
+    getNewPostButton(){
+        return cy.get('.gh-btn.gh-btn-green.ember-view[href="#/editor/post/"]');
     }
 
     getTitleField(){
@@ -15,15 +15,15 @@ class PostsPage{
     }
 
     getHearderStatusLabel(){
-        return cy.get('.gh-editor-post-status>span>div');
+        return cy.get('.flex.items-center.pl4.pr4.f8.nudge-left--1.h9.br2.br--right.bg-white>span>div');
     }
 
     getHearderStatusLabelForScheduledPosts(){
-        return cy.get('.gh-editor-post-status>span>div>time');
+        return cy.get('div.flex.items-center.pl4.pr4.f8.nudge-left--1.h9.br2.br--right.bg-white>span>div>time');
     }
 
     getBackToPostsPageButton(){
-        return cy.get('.gh-editor-back-button.ember-view');
+        return cy.get('.blue.link.fw4.flex.items-center.ember-view[href="#/posts/"]');
     }
 
     getPublishMenu(){
@@ -31,7 +31,7 @@ class PostsPage{
     }
 
     getSetItLiveOption(){
-        return cy.get('.gh-btn.gh-btn-black.gh-publishmenu-button.gh-btn-icon.ember-view');
+        return cy.get('.gh-publishmenu-radio-button').first();
     }
 
     getPublishLaterOption(){
@@ -39,11 +39,11 @@ class PostsPage{
     }
 
     getPublishButton(){
-        return cy.get('.gh-btn.gh-btn-black.gh-publishmenu-button.gh-btn-icon.ember-view');
+        return cy.get('button.gh-btn.gh-btn-blue.gh-publishmenu-button.gh-btn-icon.ember-view');
     }
 
     getScheduleButton(){
-        return cy.get('.gh-btn.gh-btn-black.gh-publishmenu-button.gh-btn-icon.ember-view');
+        return cy.get('button.gh-btn.gh-btn-blue.gh-publishmenu-button.gh-btn-icon.ember-view');
     }
 
     getSortByUpdateDateMenu(){
@@ -63,19 +63,19 @@ class PostsPage{
     }
 
     getAddCardButton(){
-        return cy.get('button[aria-label="Add a card"]');
+        return cy.get('button.koenig-plus-menu-button.flex.justify-center.items-center.relative.w9.h9.ba.b--midlightgrey-l2.bg-white.br-100.anim-normal');
     }
 
     getBookmarkOption(){
-        return cy.get('.flex[title="Bookmark"]');
+        return cy.get('div:contains("Bookmark").f-supersmall.tracked-1.fw3.ma0.mt1');
     }
 
     getPostSettingsButton(){
-        return cy.get('.gh-btn.gh-btn-editor.gh-btn-icon.only-has-icon.gh-actions-cog.ml3');
+        return cy.get('.post-settings');
     }
 
     getTagsTextbox(){
-        return cy.get('.ember-power-select-trigger-multiple-input').first();
+        return cy.get('#tag-input').first();
     }
 
     getFirstTagFromList(){

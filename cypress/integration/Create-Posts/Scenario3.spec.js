@@ -13,11 +13,11 @@ context('Ghost - ', () => {
   });
 
   it('creates empty post', () => {
-    cy.url().should('include', 'ghost/#/dashboard');
+    cy.url().should('include', 'ghost/#/site');
     menuPage.getPostsLink().click();
     cy.wait(5000);
     cy.url().should('include', 'ghost/#/posts');
-    postsPage.getNewPostBytton().click();
+    postsPage.getNewPostButton().click();
     cy.url().should('include', 'ghost/#/editor/post');
     postsPage.getTitleField().click();
     postsPage.getTitleField().click();
@@ -33,6 +33,7 @@ context('Ghost - ', () => {
     cy.url().should('include', 'ghost/#/editor/post');
     postsPage.getTitleField().clear().type('Test post #3 with Bookmark');
     postsPage.getPostUnformattedContentField().click();
+    cy.wait(1000);
     postsPage.getAddCardButton().click();
     cy.wait(1000);
     postsPage.getBookmarkOption().click({ force: true });

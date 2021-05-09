@@ -9,7 +9,7 @@ class LoginPage{
         return cy.get('#ember8');
     }
     getSignInButon(){
-        return cy.get('.login.gh-btn.gh-btn-login.gh-btn-block.gh-btn-icon.js-login-button.ember-view');
+        return cy.get('.login.gh-btn.gh-btn-blue.gh-btn-block.gh-btn-icon.ember-view');
     }
 }
 export default LoginPage
