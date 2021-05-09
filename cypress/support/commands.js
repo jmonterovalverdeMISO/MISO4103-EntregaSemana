@@ -23,3 +23,21 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import LoginPage from '../integration/PageObjects/LoginPage';
+
+Cypress.Commands.add('Login', (email, password) => {
+    const page =new LoginPage();
+    cy.visit('http://localhost:2368/ghost');
+    cy.visit('http://localhost:2368/ghost/#/signin');
+
+    cy.wait(3000);
+
+    //cy.get('#ember8').type(email);
+    page.getUserNameField().type(email);
+
+    page.getPasswordField().type(password);
+
+    page.getSignInButon().click();
+
+    cy.wait(3000);
+  })
