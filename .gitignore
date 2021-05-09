@@ -1,1 +1,5 @@
 node_modules
+cypress-ghost/cypress/videos/**/*
+cypress-ghost/cypress/screenshots/**/*
+kraken-ghost/reports/**/*
+ghost/content/logs/*
