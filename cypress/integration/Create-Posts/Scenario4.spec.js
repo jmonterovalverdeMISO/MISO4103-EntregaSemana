@@ -40,7 +40,7 @@ context('Ghost - ', () => {
     postsPage.getScheduleButton().click();
     cy.wait(3000);
     
-    postsPage.getHearderStatusLabelForScheduledPosts().should('contain.text', 'Scheduled to be published '); 
+    postsPage.getHearderStatusLabelForScheduledPosts().should('contain.text', 'Scheduled to be published'); 
     postsPage.getBackToPostsPageButton().click();
     cy.url().should('include', 'ghost/#/posts');
     //this is a workaround given that cypress will break if we use the filtering manu on top of the page
