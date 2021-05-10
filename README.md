@@ -22,8 +22,8 @@ En este documento se describen las funcionalidades a probar y escenarios de prue
 
 # Correr pruebas (Headless) :rocket:
 ## Pasos para despliegue
-1. Es obligatorio instalar [docker](https://www.docker.com/get-started)
-2. En una consola ejecuta `docker-compose up -d`
+1. Instalar [docker](https://www.docker.com/get-started) segun tu sistema operativo
+2. Ejecutar `docker-compose up -d` en una console
 
 Tras iniciar Docker, este tomará unos minutos para construir las imagenes de ghost, cypress y kraken. 
 
