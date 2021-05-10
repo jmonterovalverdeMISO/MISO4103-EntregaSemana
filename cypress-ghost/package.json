@@ -16,7 +16,6 @@
   "license": "ISC",
   "devDependencies": {
     "cypress": "^7.2.0",
-    "cypress-eslint-preprocessor": "^1.2.2",
     "eslint": "^7.25.0",
     "eslint-plugin-chai-friendly": "^0.6.0",
     "eslint-plugin-cypress": "^2.11.3",
