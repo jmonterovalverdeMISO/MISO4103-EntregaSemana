@@ -3,13 +3,18 @@ version: '3.4'
 networks:
   ghost_dev:
     name: ghost_dev
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.26.0.0/16
+          gateway: 172.26.0.1
 services:
   ghost:
     container_name: ghost
     image: ghost:3.3.0
     environment:
-      spam__user_login__freeRetries: 100
-      url: http://localhost:3001
+      spam__user_login__freeRetries: 1000
+      url: http://172.26.0.1:3001
       NODE_ENV: development
     volumes:
       - ./ghost/content:/var/lib/ghost/content
@@ -24,7 +29,7 @@ services:
       - ghost
     image: cypress/included:7.2.0
     environment:
-      CYPRESS_baseUrl: http://172.19.0.1:3001
+      CYPRESS_baseUrl: http://172.26.0.1:3001
       CYPRESS_GHOST_USER: example@example.com
       CYPRESS_GHOST_PASS: dev1234567
     working_dir: /e2e
@@ -38,7 +43,7 @@ services:
       context: .
       dockerfile: ./Dockerfile-kraken
     environment:
-      GHOST_URL: http://172.19.0.1:3001
+      GHOST_URL: http://172.26.0.1:3001
       GHOST_USER: example@example.com
       GHOST_PASS: dev1234567
     depends_on: 
