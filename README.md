@@ -1,5 +1,4 @@
-# Entrega Semana 5
-## Pruebas e2e
+# Entrega Semana 5 - Pruebas e2e
 Proyecto en el que se elabora una suite de pruebas e2e para Ghost CMS utilizando como API de automatización [Cypress](https://www.cypress.io/) y [Kraken](https://thesoftwaredesignlab.github.io/KrakenMobile/)
 
 ## Integrantes
@@ -16,11 +15,11 @@ En este documento se describen las funcionalidades a probar y escenarios de prue
 
 | Id | Nombre | Resumen | Responsable |
 | - | - | - | - |
-| [F01](F01) | Crear Tag | Funcionalidad que permite la creación de etiquetas | Carlos |
-| [F02](F02) | Crear Post | Funcionalidad que permita la creación de nuevas publicaciones | Jose |
+| [F01](https://github.com/jmonterovalverdeMISO/MISO4103-EntregaSemana/wiki/F01) | Crear Tag | Funcionalidad que permite la creación de etiquetas | Carlos |
+| [F02](https://github.com/jmonterovalverdeMISO/MISO4103-EntregaSemana/wiki/F02) | Crear Post | Funcionalidad que permita la creación de nuevas publicaciones | Jose |
 | [F03](F03) | Editar Post | Funcionalidad que permite la edición o corrección de publicaciones realizadas|Manuel|
-| [F04](F04) | Crear Page | Funcionalidad que permite la creacion de paginas con contenidos | Juan |
-| [F05](F05) | Editar Page | Funcionalidad que permite publicar las paginas creadas por el usuarios | TODOS |
+| [F04](https://github.com/jmonterovalverdeMISO/MISO4103-EntregaSemana/wiki/F04) | Crear Page | Funcionalidad que permite la creacion de paginas con contenidos | Juan |
+| [F05](https://github.com/jmonterovalverdeMISO/MISO4103-EntregaSemana/wiki/F05) | Editar Page | Funcionalidad que permite publicar las paginas creadas por el usuarios | TODOS |
 
 
 # Correr pruebas (Headless) :rocket:
