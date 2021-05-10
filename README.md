@@ -23,8 +23,8 @@ En este documento se describen las funcionalidades a probar y escenarios de prue
 | [F05](F05) | Editar Page | Funcionalidad que permite publicar las paginas creadas por el usuarios | TODOS |
 
 
-## Desplegar suite (Headless) :rocket:
-### Pasos para despliegue
+# Correr pruebas (Headless) :rocket:
+## Pasos para despliegue
 1. Es obligatorio instalar [docker](https://www.docker.com/get-started)
 2. En una consola ejecuta `docker-compose up -d`
 
@@ -32,20 +32,20 @@ Tras iniciar Docker, este tomará unos minutos para construir las imagenes de gh
 
 Una vez las imagenes esten construidas se desplegarán automaticamente 3 contenedores de docker que ejecutaran los suite de pruebas headless.
 
-### Ver ejecución de pruebas
+## Ver ejecución de pruebas
 Para visualizar el progreso de un contenedor puedes ejecutar los siguientes comandos en una consola:
 
 1. Kraken `docker logs kraken-web`
 2. Cypress `docker logs cypress-chrome`
 3. Ghost `docker logs ghost`
 
-### Ver resultados
+## Ver resultados
 Una vez la ejecución de las pruebas hayan finalizado los resultados se guardan en las siguientes direcciones segun el suite de pruebas
 
 1. Kraken `kraken-ghost/reports`
 2. Cypress `cypress-ghost/cypress`
 
-### Reiniciar ejecución de pruebas
+## Reiniciar ejecución de pruebas
 Para realizar una nueva ejecución limpia de la suite de pruebas se recomienda remover los contenedores, ejecutando en la consola:
 
 1. `docker-compose down`
