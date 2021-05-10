@@ -1,4 +1,5 @@
 # Entrega Semana 5 - Pruebas e2e
+## Ghost v3.3.0
 Proyecto en el que se elabora una suite de pruebas e2e para Ghost CMS utilizando como API de automatización [Cypress](https://www.cypress.io/) y [Kraken](https://thesoftwaredesignlab.github.io/KrakenMobile/)
 
 ## Integrantes
@@ -6,9 +7,6 @@ Proyecto en el que se elabora una suite de pruebas e2e para Ghost CMS utilizando
 2. Jose Montero - j.monterov@uniandes.edu.co
 3. Juan Camilo Daza - jc.dazam1@uniandes.edu.co
 4. Manuel Bello - m.bello@uniandes.edu.co
-
-### Aplicación bajo pruebas 
-Ghost v3.3.0
 
 ### Funcionalidades y escenarios de pruebas
 En este documento se describen las funcionalidades a probar y escenarios de prueba: 
