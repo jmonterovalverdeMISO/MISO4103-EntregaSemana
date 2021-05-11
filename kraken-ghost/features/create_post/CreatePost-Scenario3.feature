@@ -1,6 +1,6 @@
 Feature: Create Post 3
   @user1 @web
-  Scenario: Create a new Post from New Post link, with bookmark field
+  Scenario: Create a new Post from New Post link, with bookmark field and save it as draft
     Given I as a logged user navigate to "/posts"
     Then I am in page "/posts"
 
