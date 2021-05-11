@@ -39,6 +39,7 @@ Una vez las imagenes esten construidas se desplegarán automaticamente 3 contene
 
 ## Ver ejecución de pruebas
 Para visualizar el progreso de un contenedor puedes ejecutar los siguientes comandos en una consola:
+Nota: la composición y la ejecución de los escenarios tarda un tiempo dependiendo de la capacidad de su máquina local, por lo que si en el primer intento no le salen logs, dele unos segundos más para que el componente se ejecute
 
 1. Kraken `docker logs kraken-web`
 2. Cypress `docker logs cypress-chrome`
