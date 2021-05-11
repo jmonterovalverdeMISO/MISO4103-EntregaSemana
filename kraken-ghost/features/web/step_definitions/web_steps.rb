@@ -2,7 +2,7 @@ if ENV["ADB_DEVICE_ARG"].nil?
   require 'kraken-mobile/steps/web/kraken_steps'
   require 'selenium-webdriver'
 
-  wait = Selenium::WebDriver::Wait.new(:timeout => 30)
+  wait = Selenium::WebDriver::Wait.new(:timeout => 60)
 
   ghost_url = ENV["GHOST_URL"] 
   ghost_user = ENV["GHOST_USER"]
