@@ -3,7 +3,7 @@ FROM runmymind/docker-android-sdk:ubuntu-standalone
 LABEL Name=kraken-web Version=0.0.1
 
 EXPOSE 3000
-EXPOSE 9229
+EXPOSE 9222
 
 RUN apt-get update && \
     apt-get upgrade -y && \

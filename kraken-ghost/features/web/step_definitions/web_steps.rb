@@ -2,11 +2,15 @@ if ENV["ADB_DEVICE_ARG"].nil?
   require 'kraken-mobile/steps/web/kraken_steps'
   require 'selenium-webdriver'
 
-  wait = Selenium::WebDriver::Wait.new(:timeout => 30)
+  wait = Selenium::WebDriver::Wait.new(:timeout => 60)
 
   ghost_url = ENV["GHOST_URL"] 
   ghost_user = ENV["GHOST_USER"]
   ghost_pass = ENV["GHOST_PASS"]
+
+  When(/^I go to page "([^\"]*)"$/) do |path|
+    @driver.navigate.to "#{ghost_url}/ghost/##{path}"
+  end
 
   Given(/^I as a logged user navigate to "([^\"]*)"$/) do |path|
     @driver.navigate.to "#{ghost_url}/ghost"
@@ -33,7 +37,7 @@ if ENV["ADB_DEVICE_ARG"].nil?
   end
 
   Then(/^I am in page "([^\"]*)"$/) do |path|
-    $url_variable = @driver.current_url 
+    $url_variable = @driver.current_url
     raise 'ERROR: Invalid URL' unless "#{ghost_url}/ghost/##{path}" == $url_variable
   end
 

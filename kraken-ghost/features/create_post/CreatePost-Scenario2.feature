@@ -18,5 +18,5 @@ Feature: Create Post 2
     Then I am in page "/posts"
     Then I should see text "Test post #2"
 
-    When I navigate to page "/site"
+    When I go to page "/site"
     Then I should see text "Test post #2"

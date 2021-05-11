@@ -2,6 +2,8 @@ Feature: Create Post
   @user1 @web
   Scenario: Create a new Post from + sign on dashboard page and publish on a future date
     Given I as a logged user navigate to "/posts"
+
+    When I click on element having css selector ".gh-btn[href="#/editor/post/"]"
     Then I am in page "/editor/post"
 
     When I enter "Test post #4" into input field having css selector ".gh-editor-title"
