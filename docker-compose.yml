@@ -11,15 +11,16 @@ networks:
 services:
   ghost:
     container_name: ghost
-    image: ghost:3.3.0
+    image: ghost-test
+    build:
+      context: .
+      dockerfile: ./Dockerfile-ghost
     environment:
       spam__user_login__freeRetries: 1000
-      url: http://172.26.0.1:3001
+      url: http://172.26.0.1:2368
       NODE_ENV: development
-    volumes:
-      - ./ghost/content:/var/lib/ghost/content
     ports:
-      - 3001:2368
+      - 2368:2368
     networks:
       - ghost_dev
 
@@ -29,8 +30,8 @@ services:
       - ghost
     image: cypress/included:7.2.0
     environment:
-      CYPRESS_baseUrl: http://172.26.0.1:3001
-      CYPRESS_GHOST_USER: example@example.com
+      CYPRESS_baseUrl: http://172.26.0.1:2368
+      CYPRESS_GHOST_USER: user@test.com
       CYPRESS_GHOST_PASS: dev1234567
     working_dir: /e2e
     volumes:
@@ -43,8 +44,8 @@ services:
       context: .
       dockerfile: ./Dockerfile-kraken
     environment:
-      GHOST_URL: http://172.26.0.1:3001
-      GHOST_USER: example@example.com
+      GHOST_URL: http://172.26.0.1:2368
+      GHOST_USER: user@test.com
       GHOST_PASS: dev1234567
     depends_on: 
       - ghost
