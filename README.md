@@ -1,6 +1,8 @@
 # Entrega Semana 5 - Pruebas e2e
 ## Ghost v3.3.0
-Proyecto en el que se elabora una suite de pruebas e2e para Ghost CMS utilizando como API de automatización [Cypress](https://www.cypress.io/) y [Kraken](https://thesoftwaredesignlab.github.io/KrakenMobile/)
+Proyecto en el que se elabora una suite de pruebas e2e para Ghost CMS utilizando como API de automatización [Cypress](https://www.cypress.io/) y [Kraken](https://thesoftwaredesignlab.github.io/KrakenMobile/).
+<br/><br/>
+Para ver una comparación de ventajas y desventajas de ambas herramientas, visite el siguiente [enlace](https://github.com/jmonterovalverdeMISO/MISO4103-EntregaSemana/wiki/Ventajas-y-desventajas---Cypress-y-Kraken)
 
 ## Integrantes
 1. Carlos Garcia - cj.garcias1@uniandes.edu.co
@@ -23,11 +25,17 @@ En este documento se describen las funcionalidades a probar y escenarios de prue
 # Correr pruebas (Headless) :rocket:
 ## Pasos para despliegue
 1. Instalar [docker](https://www.docker.com/get-started) segun tu sistema operativo
-2. Ejecutar `docker-compose up -d` en una console
+2. Clonar este repositorio en su máquina local. Si necesita ayuda puede consultar este (link)[https://docs.github.com/es/github/creating-cloning-and-archiving-repositories/cloning-a-repository]
+3. Abrir una consola que esté ubicada sobre el folder del repositorio que clonó en el paso 2.
+4. Verificar que el servicio de docker está corriendo.
+5. Ejecutar `docker-compose up -d` en una consola
 
 Tras iniciar Docker, este tomará unos minutos para construir las imagenes de ghost, cypress y kraken. 
 
 Una vez las imagenes esten construidas se desplegarán automaticamente 3 contenedores de docker que ejecutaran los suite de pruebas headless.
+
+![image](https://user-images.githubusercontent.com/78028512/117737241-b2641600-b1b6-11eb-9c7d-4e073a7fd0e9.png)
+
 
 ## Ver ejecución de pruebas
 Para visualizar el progreso de un contenedor puedes ejecutar los siguientes comandos en una consola:
