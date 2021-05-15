@@ -1,0 +1,9 @@
+FROM ghost:3.3.0
+
+LABEL Name=ghost-test-3.3.0 Version=0.0.1
+
+COPY ./ghost/3.3.0/content /var/lib/ghost/content
+
+EXPOSE 3002
+
+CMD node current/index.js

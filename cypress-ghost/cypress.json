@@ -1,6 +1,7 @@
 {
-    "baseUrl": "http://localhost:2368",
+    "testFiles": "**/*.spec.*",
     "chromeWebSecurity":  false,
     "redirectionLimit": 50,
-    "video": false
+    "video": false,
+    "experimentalInteractiveRunEvents": true
 }

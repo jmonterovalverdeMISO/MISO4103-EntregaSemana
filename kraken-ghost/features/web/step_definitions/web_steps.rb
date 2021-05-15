@@ -4,7 +4,7 @@ if ENV["ADB_DEVICE_ARG"].nil?
 
   wait = Selenium::WebDriver::Wait.new(:timeout => 60)
 
-  ghost_url = ENV["GHOST_URL"] 
+  ghost_url = ''
   ghost_user = ENV["GHOST_USER"]
   ghost_pass = ENV["GHOST_PASS"]
 
@@ -12,7 +12,13 @@ if ENV["ADB_DEVICE_ARG"].nil?
     @driver.navigate.to "#{ghost_url}/ghost/##{path}"
   end
 
-  Given(/^I as a logged user navigate to "([^\"]*)"$/) do |path|
+  Given(/^I log in at "([^\"]*)"$/) do |version|
+    if version == '3.3.0'
+      ghost_url = ENV['GHOST_3_3_0']
+    elsif version == '3.42.5'
+      ghost_url = ENV['GHOST_3_42_5']
+    end
+
     @driver.navigate.to "#{ghost_url}/ghost"
 
     wait.until{@driver.find_element(css: "button[type='submit']")}
@@ -26,8 +32,6 @@ if ENV["ADB_DEVICE_ARG"].nil?
     @driver.action.click(submit_button).perform
 
     wait.until{@driver.current_url == "#{ghost_url}/ghost/#/site"}
-  
-    @driver.navigate.to "#{ghost_url}/ghost/##{path}"
   end
 
   When(/^I click on element with text "([^\"]*)"$/) do |text|

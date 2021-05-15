@@ -6,7 +6,6 @@ EXPOSE 3000
 EXPOSE 9222
 
 RUN apt-get update && \
-    apt-get upgrade -y && \
     apt-get install build-essential -y && \
     apt-get install chromium-chromedriver -y && \ 
     apt-get install ruby-dev -y

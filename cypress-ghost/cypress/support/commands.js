@@ -11,18 +11,46 @@
 //
 // -- This is a parent command --
 
-import LoginPage from "../pageObjects/LoginPage"
+const versions = {
+  '3.3.0': (user, password) => {
+    const LoginPage = require("../integration/3.3.0/pageObjects/LoginPage");
 
+    Cypress.config('baseUrl', Cypress.env('GHOST_3_3_0'))
 
-Cypress.Commands.add('login', () => {
     cy.visit('/ghost/#/signin')
-
-    const user = Cypress.env('GHOST_USER') || 'user@test.com';
-    const password = Cypress.env('GHOST_PASS') || 'dev1234567';
 
     LoginPage.getUserNameField().type(user)
     LoginPage.getPasswordField().type(password)
     LoginPage.getSignInButon().click()
+  },
+  '3.42.5': (user, password) => {
+    const LoginPage = require("../integration/3.3.0/pageObjects/LoginPage");
 
-    cy.wait(500)
+    Cypress.config('baseUrl', Cypress.env('GHOST_3_42_5'))
+
+    cy.visit('/ghost/#/signin')
+
+    LoginPage.getUserNameField().type(user)
+    LoginPage.getPasswordField().type(password)
+    LoginPage.getSignInButon().click()
+  }
+}
+
+Cypress.Commands.add('login', (version) => {
+  if (!version) {
+    throw 'No ghost version provided';
+  }
+
+  const user = Cypress.env('GHOST_USER') || 'user@test.com';
+  const password = Cypress.env('GHOST_PASS') || 'dev1234567';
+
+  if (version.includes('3.3.0')) {
+    versions['3.3.0'](user, password);
+  }
+
+  if (version.includes('3.42.5')) {
+    versions['3.42.5'](user, password);
+  }
+
+  cy.wait(500)
 })
