@@ -3,7 +3,8 @@
     "chromeWebSecurity":  false,
     "redirectionLimit": 50,
     "video": false,
-    "experimentalInteractiveRunEvents": true,
+    "trashAssetsBeforeRuns": true,
+    "screenshotOnRunFailure": false,
     "env": {
         "GHOST_3_3_0": "http://localhost:3001",
         "GHOST_3_42_5": "http://localhost:3002"

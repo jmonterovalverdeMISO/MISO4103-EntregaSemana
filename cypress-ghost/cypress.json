@@ -3,5 +3,6 @@
     "chromeWebSecurity":  false,
     "redirectionLimit": 50,
     "video": false,
-    "experimentalInteractiveRunEvents": true
+    "trashAssetsBeforeRuns": true,
+    "screenshotOnRunFailure": false
 }

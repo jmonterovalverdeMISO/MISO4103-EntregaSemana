@@ -6,13 +6,13 @@ import TagPage from "../pageObjects/TagPage";
 
 context('Error creating Internal tag without name', () => {
   before(() => {
-    cy.login()
+    cy.login('3.3.0')
   })
 
   beforeEach(() => {
     Cypress.Cookies.preserveOnce('ghost-admin-api-session')
   })
-
+  
   it('should navigate to /tags by clicking menu button', () => {
     MenuPage.getTagsLink().click();
 
