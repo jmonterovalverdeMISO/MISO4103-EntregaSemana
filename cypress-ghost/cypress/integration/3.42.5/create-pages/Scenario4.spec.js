@@ -41,8 +41,8 @@ context("Delete draft page", () => {
     PagesPage.getDeleteDialog().should("be.visible");
   });
 
-  it("should delete page and redirect to /pages", () => {
+  it("should delete page and redirect user", () => {
     PagesPage.getDeleteDialog().get(".gh-btn.gh-btn-red").click();
-    cy.url().should("include", "ghost/#/pages");
+    cy.url().should("not.include", "ghost/#/editor/page");
   });
 });
