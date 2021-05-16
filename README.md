@@ -40,11 +40,10 @@ Todas las funcionalidades tinen escenarios para ser probadas en ambas versiones 
 2. Clonar este repositorio en su máquina local. Si necesita ayuda puede consultar este (link)[https://docs.github.com/es/github/creating-cloning-and-archiving-repositories/cloning-a-repository]
 3. Abrir una consola que esté ubicada sobre el folder del repositorio que clonó en el paso 2.
 4. Verificar que el servicio de docker está corriendo.
-5. Ejecutar `docker-compose up -d` en una consola
+5. Ejecutar `docker-compose build` en una consola para construir las imagenes de VRT, ghost, cypress y kraken. 
+6. Ejecutar `docker-compose up -d` en una consola para iniciar infraestructura de pruebas.
 
-Tras iniciar Docker, este tomará unos minutos para construir las imagenes de ghost, cypress y kraken. 
-
-Una vez las imagenes esten construidas se desplegarán automaticamente 3 contenedores de docker que ejecutaran los suite de pruebas headless.
+Una vez ejecutados los pasos se desplegarán automaticamente la infraestructura con Ghost y se ejecutaran los suite de pruebas headless.
 
 ![image](https://user-images.githubusercontent.com/78028512/117737241-b2641600-b1b6-11eb-9c7d-4e073a7fd0e9.png)
 
