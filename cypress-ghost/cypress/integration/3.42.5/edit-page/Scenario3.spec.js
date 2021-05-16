@@ -3,7 +3,7 @@ import MenuPage from "../pageObjects/MenuPage";
 import PagesPage from "../pageObjects/PagesPage";
 import PagesListPage from "../pageObjects/PagesListPage";
 
-context("Edit published page", () => {
+context("Edit published page title", () => {
   before(() => {
     cy.login("3.42.5");
     cy.visit("ghost/#/editor/page");
