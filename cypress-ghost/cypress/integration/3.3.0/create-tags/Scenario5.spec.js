@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
 
-import MenuPage from "../../pageObjects/MenuPage";
-import TagListPage from "../../pageObjects/TagListPage";
-import TagPage from "../../pageObjects/TagPage";
+import MenuPage from "../pageObjects/MenuPage";
+import TagListPage from "../pageObjects/TagListPage";
+import TagPage from "../pageObjects/TagPage";
 
 context('Create Public tag only using name', () => {
   before(() => {
