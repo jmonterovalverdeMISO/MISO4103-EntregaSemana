@@ -1,5 +1,5 @@
 /// <reference types='cypress' />
-import MenuPage from "/../pageObjects/MenuPage";
+import MenuPage from "../pageObjects/MenuPage";
 import PagesPage from "../pageObjects/PagesPage";
 import PagesListPage from "../pageObjects/PagesListPage";
 

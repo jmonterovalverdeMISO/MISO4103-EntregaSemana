@@ -5,7 +5,7 @@ import PagesListPage from "../pageObjects/PagesListPage";
 
 context("Create Page - ", () => {
   beforeEach(() => {
-    cy.login();
+    cy.login('3.3.0');
   });
 
   it("creates draft pages", () => {
