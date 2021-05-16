@@ -17,10 +17,11 @@ Feature: Create Page 4 as 'draft' and delete it
     Then I am in page "/pages"
     Then I should see text "Test page #4"
 	
-    When I click on element having css selector "gh-content-entry-title"
-    Then I am in page "/editor/page"
+    When I click on element having css selector ".gh-content-entry-title"
+    #Then I am in page "/editor/page"
     
-    When I click on element having css selector "post-settings"
-    When I click on element having css selector ".gh-btn.gh-btn-hover-red.gh-btn-icon.settings-menu-delete-button"
-    When I click on element having css selector ".gh-btn.gh-btn-red.gh-btn-icon.ember-view[text="Delete"]"
-    Then I am in page "/pages" 
+    #When I click on element having css selector "post-settings"
+    #When I click on element having css selector ".gh-btn.gh-btn-hover-red.gh-btn-icon.settings-menu-delete-button"
+    #When I click on element having css selector ".gh-btn.gh-btn-red.gh-btn-icon.ember-view[text="Delete"]"
+    #Then I am in page "/pages"
+    Then I navigate to page "http://localhost:3002/ghost/#/posts"

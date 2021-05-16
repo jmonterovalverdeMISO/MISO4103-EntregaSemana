@@ -1,21 +1,28 @@
 Feature: Edit Post
   @user1 @web
-  Scenario: Edit Post from link and publish it right away
-    Given I log in at "3.3.0"
-    When I go to page "/posts"
+  Scenario: Edit Post successful
+  Given I log in at "3.3.0"
+   When I go to page "/posts"
 
-    When I click on element having css selector "a.permalink.gh-list-data.gh-post-list-featured.ember-view[title="Edit this post"]"
-    When I enter "Test post #1" into input field having css selector ".gh-editor-title"
-    When I click on element having css selector ".koenig-editor__editor.__mobiledoc-editor.__has-no-content"
-    When I enter "Test content #1" into input field having css selector ".koenig-editor__editor.__mobiledoc-editor.__has-no-content"
-    When I click on element having css selector ".gh-publishmenu-trigger"
-    When I click on element having css selector ".gh-publishmenu-button"
-    When I click on element having css selector ".blue.link.fw4.flex.items-center.ember-view[href="#/posts/"]"
-    Then I am in page "/post"
+   Then I navigate to page "http://localhost:3001/ghost/#/editor/post"
+   Then I wait for 2 seconds    
+   Then I enter "Test Post #1 - Edit" into input field having css selector ".gh-editor-title.ember-text-area.gh-input.ember-view"
+   Then I enter "Test Post #1 - Edit" into input field having css selector ".koenig-editor__editor.__mobiledoc-editor.__has-no-content"    
+   Then I wait for 2 seconds
+   Then I navigate to page "http://localhost:3001/ghost/#/posts"
+   Then I should see text "Draft"
+   Then I click on first element with css selector ".ember-view.permalink.gh-list-data.gh-post-list-title"
+   Then I wait for 2 seconds
+   Then I clear input field having css selector ".koenig-editor__editor.__mobiledoc-editor"    
+   Then I wait for 1 seconds
+   Then I press right arrow key into input field having css selector ".koenig-editor__editor.__mobiledoc-editor"
+   Then I wait for 1 seconds
+   Then I enter "Test Post #1 final - Edit" into input field having css selector ".koenig-editor__editor.__mobiledoc-editor.__has-no-content"   
+   Then I wait for 2 seconds
+   Then I navigate to page "http://localhost:3001/ghost/#/posts"
+   Then I should see text "Draft"
 
-    Then I am in page "/posts"
-    Then I should see text "Test post #1"
-
+   
 
    
    

@@ -4,9 +4,9 @@ if ENV["ADB_DEVICE_ARG"].nil?
 
   wait = Selenium::WebDriver::Wait.new(:timeout => 60)
 
-  ghost_url = 'http://localhost:2368'
-  ghost_user = 'mfelipebello04@gmail.com'#ENV["GHOST_USER"]
-  ghost_pass = 'pruebas1234'#ENV["GHOST_PASS"]
+  ghost_url = 'http://localhost:3001'
+  ghost_user = ENV["GHOST_USER"]
+  ghost_pass = ENV["GHOST_PASS"]
 
   When(/^I go to page "([^\"]*)"$/) do |path|
     @driver.navigate.to "#{ghost_url}/ghost/##{path}"
@@ -14,12 +14,13 @@ if ENV["ADB_DEVICE_ARG"].nil?
 
   Given(/^I log in at "([^\"]*)"$/) do |version|
     if version == '3.3.0'
-      ghost_url = 'http://localhost:2368' #ENV['GHOST_3_3_0']
+      print("version: " + version)
+      ghost_url = 'http://localhost:3001' #ENV['GHOST_3_3_0']
     elsif version == '3.42.5'
-      ghost_url = 'http://localhost:2368' #ENV['GHOST_3_42_5']
+      print("version: " + version)
+      ghost_url = 'http://localhost:3002' #ENV['GHOST_3_42_5']
     end
 
-    print("Test")
     @driver.navigate.to "#{ghost_url}/ghost"
     
     wait.until{@driver.find_element(css: "button[type='submit']")}
@@ -76,4 +77,34 @@ if ENV["ADB_DEVICE_ARG"].nil?
     @driver.navigate.to $url_variable
     sleep 2
   end
+
+  Then(/^I click on first element with css selector "(.*?)"$/) do |selector|
+    @driver.find_elements(:css, selector)[0].click    
+  end
+
+  Then(/^I clear input field having css selector "(.*?)"$/) do |selector|
+    @driver.find_element(:css, selector).clear
+  end
+
+  Then(/^I press right arrow key into input field having css selector "(.*?)"$/) do |selector|
+    @driver.find_element(:css, selector).send_keys(:arrow_right) 
+  end
+
+  Then(/^I click on element contained in css selector "(.*?)" with title "(.*?)"$/) do |selector, text|
+    elements = @driver.find_elements(:css, selector)
+    elements.each do |element|
+      attr = element.attribute('title')
+      if attr == text
+        element.click
+        break
+      end
+    end
+  end
+
+  Then(/^I click on element having css selector edit "(.*?)"$/) do |selector|
+    @driver.find_element(:css, selector).click
+  end
+
+
+
 end
