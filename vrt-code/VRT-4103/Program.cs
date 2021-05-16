@@ -65,15 +65,14 @@ namespace vrt_4103
             }
             foreach (ScenarioResult scenario in scenarios)
             {
-                //string baselineImagePath = scenario.SourceBaselineImagePath;
-                //string currentImagePath = scenario.SourceCurrentImagePath;
+
+                filesExist = true;
                 string baselineImageFileName = scenario.ImageFileName;
                 string currentImageFilename = scenario.ImageFileName;
-                //string baseImagePath = scenario.BAseImagePath;
-                //string currentImagePath = scenario.CurrentImagePath;
 
                 if (File.Exists(scenario.BaseImagePath))
                 {
+                    Console.WriteLine("Copying base image: {0}", scenario.BaseImagePath);
                     scenario.ResultsBaselineImagePath = paths.BaselineImagesPath + @"/baseline_" + scenario.ImageFileName;
                     File.Copy(scenario.BaseImagePath, scenario.ResultsBaselineImagePath);
                 }
@@ -85,6 +84,7 @@ namespace vrt_4103
 
                 if (File.Exists(scenario.CurrentImagePath))
                 {
+                    Console.WriteLine("Copying current image: {0}", scenario.CurrentImagePath);
                     scenario.ResultsCurrentImagePath = paths.CurrentImagesPath + @"/current_" + scenario.ImageFileName;
                     File.Copy(scenario.CurrentImagePath, scenario.ResultsCurrentImagePath);
                 }
@@ -104,6 +104,7 @@ namespace vrt_4103
                 }
                 else
                 {
+                    Console.WriteLine("Comparing pixels");
                     Bitmap baselineImage = new Bitmap(scenario.BaseImagePath);
                     Bitmap currentImage = new Bitmap(scenario.CurrentImagePath);
                     Bitmap resultImage = new Bitmap(baselineImage.Width, baselineImage.Height);
@@ -149,27 +150,41 @@ namespace vrt_4103
                         decimal fullsize = (decimal)(baselineImage.Width * baselineImage.Height);
                         decimal pixelDiff = (decimal)diff / 255;
                         scenario.percentageChange = decimal.Round((pixelDiff/fullsize) * 100, 2);
-                        scenario.Comment = string.Format("Difference is bigger than Threadhold. Difference is: {0} %", scenario.percentageChange );
+                        if (scenario.percentageChange >= threadshold)
+                        {
+                            scenario.Comment = string.Format("Difference is bigger than Threadhold. Difference is: {0} %", scenario.percentageChange);
+                        }
+                        else
+                        {
+                            scenario.Comment = string.Format("Difference under the change threadhold. Difference is: {0} %", scenario.percentageChange);
+                        }
                         scenario.DiffImagePath = paths.DifferencesImagesPath + @"/result_" + scenario.StepName + ".png";
                         resultImage.Save(scenario.DiffImagePath, ImageFormat.Png);
 
                     }
                     Console.WriteLine(scenario.StepName);
                     Console.WriteLine(scenario.Comment);
-                    Console.WriteLine("----------------");
+                    
 
                     scenario.ResultsBaselineImagePath = scenario.ResultsBaselineImagePath.Replace(paths.BasePath + @"/", "./").Replace(@"/", "/");
                     scenario.ResultsCurrentImagePath = scenario.ResultsCurrentImagePath.Replace(paths.BasePath + @"/", "./").Replace(@"/", "/");
                     scenario.DiffImagePath = scenario.DiffImagePath.Replace(paths.BasePath + @"/", "./").Replace(@"/", "/");
                     
+                   
+
                 }
+                Console.WriteLine(scenario.Comment);
                 if (scenario.percentageChange >= threadshold)
                 {
+                    Console.WriteLine("ResultsBaselineImagePath: {0}", scenario.ResultsBaselineImagePath);
+                    Console.WriteLine("ResultsCurrentImagePath: {0}", scenario.ResultsCurrentImagePath);
+                    Console.WriteLine("DiffImagePath: {0}", scenario.DiffImagePath);
                     scenarioReportList += string.Format(scenarioTemplate, "S" + scenarioIndex.ToString(), scenario.StepName, scenario.Comment, scenario.ResultsBaselineImagePath,
                                                       scenario.ResultsCurrentImagePath, scenario.DiffImagePath, scenario.ScenarioName);
                     failedScenarios += 1;
                 }
                 scenarioIndex += 1;
+                Console.WriteLine("----------------");
             }
 
             int totalScenarios = paths.getTotalScenarios();

@@ -46,7 +46,7 @@ services:
       CYPRESS_GHOST_PASS: dev1234567
     working_dir: /e2e
     volumes:
-      - ./cypress-ghost:/e2e
+      - ./cypress-ghost:/e2e:rw
     depends_on: 
       - ghost_3_3_0
       - ghost_3_42_5

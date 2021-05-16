@@ -4,6 +4,8 @@ FROM mcr.microsoft.com/dotnet/nightly/sdk:5.0 AS build
 
 LABEL Name=vrt-report Version=0.0.3
 
+
+
 FROM mcr.microsoft.com/dotnet/runtime:5.0
 COPY ./vrt-app .
 
