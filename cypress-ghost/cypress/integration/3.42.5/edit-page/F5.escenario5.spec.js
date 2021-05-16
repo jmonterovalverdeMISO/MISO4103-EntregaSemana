@@ -21,6 +21,7 @@ context("Edit Page - ", () => {
       PostsPage.getDescriptionField().type("Test #5 Edit Page {enter}");
       PostsPage.getPublishMenu().click();
       PostsPage.getPublishButton().click();
+      cy.wait(1500)
       PostsPage.getBackToPagesButton().click();
       PostListPage.getLastPublishedPostTitle().should(
         "contain.text",

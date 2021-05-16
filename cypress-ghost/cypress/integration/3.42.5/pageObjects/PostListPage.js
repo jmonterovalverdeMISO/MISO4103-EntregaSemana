@@ -1,6 +1,6 @@
 /// <reference types='cypress' />
 
-class PostListPage {
+class PostsListPage {
   static getLastPostLink() {
     return cy
       .get("a:visible.ember-view.permalink.gh-list-data.gh-post-list-title")
@@ -62,4 +62,4 @@ class PostListPage {
   }
 }
 
-export default PostListPage;
+export default PostsListPage;

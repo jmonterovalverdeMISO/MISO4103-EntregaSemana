@@ -96,5 +96,47 @@ class PagesPage {
   static getCloseSettingsButton() {
     return cy.get(".close.settings-menu-header-action");
   }
+
+  static getTitleField(){
+    return cy.get('.gh-editor-title.ember-text-area.gh-input.ember-view');
+}
+
+static getDescriptionField(){
+    return cy.get('.koenig-editor__editor.__mobiledoc-editor');
+}
+
+static getPublishMenu(){
+    return cy.get('.gh-publishmenu-trigger');
+}
+
+static getPublishButton(){
+    return cy.get('button.gh-btn.gh-btn-blue.gh-publishmenu-button.gh-btn-icon.ember-view');
+}
+
+
+static getUnPublishButton(){
+    return cy.get('div.flex.items-center.pl4.pr4.f8.nudge-left--1.h9.br2.br--right.bg-white');
+}
+
+static getBackToPostsPageButton(){
+    return cy.get('.blue.link.fw4.flex.items-center.ember-view[href="#/posts/"]');
+}
+
+static getBackToPagesButton(){
+    return cy.get('.blue.link.fw4.flex.items-center.ember-view[href="#/pages/"]');
+}
+
+static getPublishLaterOption(){
+    return cy.get('.gh-date-time-picker-timezone').first();
+}
+
+static getScheduleButton(){
+    return cy.get('button.gh-btn.gh-btn-blue.gh-publishmenu-button.gh-btn-icon.ember-view');
+}
+
+static getHearderStatusLabelForScheduledPosts(){
+    return cy.get('div.flex.items-center.pl4.pr4.f8.nudge-left--1.h9.br2.br--right.bg-white>span>div>time');
+}
+
 }
 export default PagesPage;

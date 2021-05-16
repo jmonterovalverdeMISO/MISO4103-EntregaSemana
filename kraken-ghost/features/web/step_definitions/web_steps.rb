@@ -4,9 +4,9 @@ if ENV["ADB_DEVICE_ARG"].nil?
 
   wait = Selenium::WebDriver::Wait.new(:timeout => 60)
 
-  ghost_url = ''
-  ghost_user = ENV["GHOST_USER"]
-  ghost_pass = ENV["GHOST_PASS"]
+  ghost_url = 'http://localhost:2368'
+  ghost_user = 'mfelipebello04@gmail.com'#ENV["GHOST_USER"]
+  ghost_pass = 'pruebas1234'#ENV["GHOST_PASS"]
 
   When(/^I go to page "([^\"]*)"$/) do |path|
     @driver.navigate.to "#{ghost_url}/ghost/##{path}"
@@ -14,13 +14,14 @@ if ENV["ADB_DEVICE_ARG"].nil?
 
   Given(/^I log in at "([^\"]*)"$/) do |version|
     if version == '3.3.0'
-      ghost_url = ENV['GHOST_3_3_0']
+      ghost_url = 'http://localhost:2368' #ENV['GHOST_3_3_0']
     elsif version == '3.42.5'
-      ghost_url = ENV['GHOST_3_42_5']
+      ghost_url = 'http://localhost:2368' #ENV['GHOST_3_42_5']
     end
 
+    print("Test")
     @driver.navigate.to "#{ghost_url}/ghost"
-
+    
     wait.until{@driver.find_element(css: "button[type='submit']")}
 
     email_input = @driver.find_element(name: "identification")

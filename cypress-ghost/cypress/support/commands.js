@@ -17,7 +17,7 @@ const versions = {
 
     Cypress.config('baseUrl', Cypress.env('GHOST_3_3_0'))
 
-    cy.visit('/ghost/#/signin')
+    cy.visit('http://localhost:3001/ghost/#/signin')
 
     LoginPage.getUserNameField().type(user)
     LoginPage.getPasswordField().type(password)
@@ -28,7 +28,7 @@ const versions = {
 
     Cypress.config('baseUrl', Cypress.env('GHOST_3_42_5'))
 
-    cy.visit('/ghost/#/signin')
+    cy.visit('http://localhost:3002/ghost/#/signin')
 
     LoginPage.getUserNameField().type(user)
     LoginPage.getPasswordField().type(password)
@@ -41,8 +41,11 @@ Cypress.Commands.add('login', (version) => {
     throw 'No ghost version provided';
   }
 
-  const user = Cypress.env('GHOST_USER') || 'user@test.com';
-  const password = Cypress.env('GHOST_PASS') || 'dev1234567';
+  //const user = Cypress.env('GHOST_USER') || 'user@test.com';
+  //const password = Cypress.env('GHOST_PASS') || 'dev1234567';
+
+  const user = Cypress.env('GHOST_USER') || 'mfelipebello04@gmail.com';
+  const password = Cypress.env('GHOST_PASS') || 'pruebas1234';
 
   if (version.includes('3.3.0')) {
     versions['3.3.0'](user, password);

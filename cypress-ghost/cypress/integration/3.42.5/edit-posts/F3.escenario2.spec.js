@@ -1,7 +1,7 @@
 /// <reference types='cypress' />
 import MenuPage from "../pageObjects/MenuPage";
-import PagesPage from "../pageObjects/PagesPage";
-import PagesListPage from "../pageObjects/PagesListPage";
+import PostsPage from "../pageObjects/PagesPage";
+import PostListPage from "../pageObjects/PagesListPage";
 
 context("Edit Post - ", () => {
   beforeEach(() => {
@@ -21,6 +21,7 @@ context("Edit Post - ", () => {
       PostsPage.getDescriptionField().type("Test #2 Edit {enter}");
       PostsPage.getPublishMenu().click();
       PostsPage.getPublishButton().click();
+      cy.wait(1500)
       PostsPage.getBackToPostsPageButton().click();
       PostListPage.getLastPublishedPostTitle().should(
         "contain.text",

@@ -32,6 +32,15 @@ class PagesListPage{
         .parent().parent().parent().find('.gh-content-entry-title');
     }
 
+    static getLastDraftPostTitle(){
+        return cy.get('span:contains("Draft").gh-content-status-draft.gh-badge.gh-badge-purple.nowrap').first()
+        .parent().parent().parent().find('.gh-content-entry-title');
+    }
+
+    static getLastScheduledPostTitle(){
+        return cy.get('span:contains("Scheduled").gh-content-status-draft.gh-badge.nowrap').first()
+        .parent().parent().parent().find('.gh-content-entry-title');
+    }
 
 }
 export default PagesListPage
