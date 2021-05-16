@@ -22,16 +22,17 @@ En este repositorio se ejecutan 3 clases de pruebas:
 4. Manuel Bello - m.bello@uniandes.edu.co
 
 ### Funcionalidades y escenarios de pruebas
-En este documento se describen las funcionalidades a probar y escenarios de prueba: 
+En [este documento](https://github.com/jmonterovalverdeMISO/MISO4103-EntregaSemana/wiki/Funcionalidades) se describen las funcionalidades a probar y escenarios de prueba. A continuación de tiene una tabla resumen de las mismas:
 
-| Id | Nombre | Resumen | Responsable |
-| - | - | - | - |
-| [F01](https://github.com/jmonterovalverdeMISO/MISO4103-EntregaSemana/wiki/F01) | Crear Tag | Funcionalidad que permite la creación de etiquetas | Carlos |
-| [F02](https://github.com/jmonterovalverdeMISO/MISO4103-EntregaSemana/wiki/F02) | Crear Post | Funcionalidad que permita la creación de nuevas publicaciones | Jose |
-| [F03](F03) | Editar Post | Funcionalidad que permite la edición o corrección de publicaciones realizadas|Manuel|
-| [F04](https://github.com/jmonterovalverdeMISO/MISO4103-EntregaSemana/wiki/F04) | Crear Page | Funcionalidad que permite la creacion de paginas con contenidos | Juan |
-| [F05](https://github.com/jmonterovalverdeMISO/MISO4103-EntregaSemana/wiki/F05) | Editar Page | Funcionalidad que permite publicar las paginas creadas por el usuarios | TODOS |
+| Id | Nombre | 
+| - | - | 
+| [F01](https://github.com/jmonterovalverdeMISO/MISO4103-EntregaSemana/wiki/F01) | Crear Tag |
+| [F02](https://github.com/jmonterovalverdeMISO/MISO4103-EntregaSemana/wiki/F02) | Crear Post | 
+| [F03](F03) | Editar Post | 
+| [F04](https://github.com/jmonterovalverdeMISO/MISO4103-EntregaSemana/wiki/F04) | Crear Page | 
+| [F05](https://github.com/jmonterovalverdeMISO/MISO4103-EntregaSemana/wiki/F05) | Editar Page | 
 
+Todas las funcionalidades tinen escenarios para ser probadas en ambas versiones de Ghost.
 
 # Correr pruebas (Headless) :rocket:
 ## Pasos para despliegue
