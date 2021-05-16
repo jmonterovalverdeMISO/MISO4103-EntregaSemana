@@ -1,7 +1,7 @@
 /// <reference types='cypress' />
-import MenuPage from "../../pageObjects/MenuPage";
-import PostsPage from "../../pageObjects/PostsPage";
-import PostsListPage from "../../pageObjects/PostListPage";
+import MenuPage from "../pageObjects/MenuPage";
+import PostsPage from "../pageObjects/PostsPage";
+import PostsListPage from "../pageObjects/PostListPage";
 
 context("Ghost - ", () => {
   beforeEach(() => {

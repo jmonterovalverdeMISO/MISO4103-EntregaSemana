@@ -1,7 +1,7 @@
 /// <reference types='cypress' />
-import MenuPage from "../../pageObjects/MenuPage";
-import PostsPage from "../../pageObjects/PostsPage";
-import PostsListPage from "../../pageObjects/PostListPage";
+import MenuPage from "../pageObjects/MenuPage";
+import PostsPage from "../pageObjects/PostsPage";
+import PostsListPage from "../pageObjects/PostListPage";
 
 context("Ghost - ", () => {
   beforeEach(() => {
@@ -34,11 +34,11 @@ context("Ghost - ", () => {
     cy.wait(3000);
     PostsPage.getPublishLaterOption().click();
     PostsPage.getScheduleButton().click();
-    cy.wait(3000);
+    cy.wait(2000);
 
     PostsPage.getHearderStatusLabelForScheduledPosts().should(
       "contain.text",
-      "Will be published in 5 minutes"
+      "\n            Will be published in 5 minutes\n        "
     );
     PostsPage.getBackToPostsPageButton().click();
     cy.url().should("include", "ghost/#/posts");

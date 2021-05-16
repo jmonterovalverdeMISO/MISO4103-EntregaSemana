@@ -1,7 +1,7 @@
 /// <reference types='cypress' />
-import MenuPage from '../../pageObjects/MenuPage'
-import PagesPage from '../../pageObjects/PagesPage'
-import PagesListPage from '../../pageObjects/PagesListPage'
+import MenuPage from '../pageObjects/MenuPage'
+import PagesPage from '../pageObjects/PagesPage'
+import PagesListPage from '../pageObjects/PagesListPage'
 
 context('Create Page - ', () => {
   beforeEach(() => {
