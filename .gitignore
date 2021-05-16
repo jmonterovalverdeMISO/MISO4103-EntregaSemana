@@ -10,4 +10,4 @@ kraken-ghost/*_inbox.txt
 vrt-results/report/*
 
 # exception to the rule
-!vrt-results/report/report.html
+!vrt-results/report/README.md
