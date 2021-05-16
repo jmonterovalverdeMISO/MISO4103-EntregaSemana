@@ -71,3 +71,22 @@ services:
       - ./kraken-ghost:/app
     networks:
       - ghost_dev
+
+  vtr-test:
+    container_name: vtr-test
+    image: vtr-test
+    build:
+      context: .
+      dockerfile: ./Dockerfile-vrt
+    environment:
+      GHOST_3_42_5: http://ghost_3_42_5:3002
+      GHOST_3_3_0: http://ghost_3_3_0:3001
+      GHOST_USER: user@test.com
+      GHOST_PASS: dev1234567
+    depends_on: 
+      - cypress
+    volumes: 
+      - ./vrt-results/report:/report:rw
+      - ./cypress-ghost/cypress/screenshots:/screenshots:rw
+    networks:
+      - ghost_dev

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "vrt-4103": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
