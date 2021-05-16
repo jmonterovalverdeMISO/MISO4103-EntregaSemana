@@ -1,51 +1,48 @@
 /// <reference types='cypress' />
 import MenuPage from "../pageObjects/MenuPage";
 import PagesPage from "../pageObjects/PagesPage";
-import PagesListPage from "../pageObjects/PagesListPage";
 
-context("Create Page - ", () => {
-  beforeEach(() => {
-    cy.login('3.42.5');
+context("Delete draft page", () => {
+  before(() => {
+    cy.login("3.42.5");
   });
 
-  it("creates pages", () => {
-    cy.url().should("include", "ghost/#/site");
+  beforeEach(() => {
+    Cypress.Cookies.preserveOnce("ghost-admin-api-session");
+  });
+
+  afterEach(() => {
+    cy.screenshot();
+  });
+
+  it("should navigate to /pages from home", () => {
     MenuPage.getPagesLink().click();
-    cy.wait(5000);
     cy.url().should("include", "ghost/#/pages");
+  });
+
+  it("should navigate to page editor by clicking new page button", () => {
     PagesPage.getNewPageButton().click();
     cy.url().should("include", "ghost/#/editor/page");
-    PagesPage.getTitleField().click();
-    PagesPage.getBackToPagesPageButton().click();
-    cy.wait(5000);
   });
 
-  it("fills pages fields", () => {
-    MenuPage.getPagesLink().click();
-    cy.wait(5000);
-    PagesListPage.getLastDraftPageTitle().click({ force: true });
-    cy.wait(5000);
-    cy.url().should("include", "ghost/#/editor/page");
-    PagesPage.getTitleField().clear().type("Test page #4");
-    PagesPage.getPageUnformattedContentField().type("Test content #4");
-    PagesPage.getHearderStatusLabel().click();
-    cy.wait(5000);
-    PagesPage.getHearderStatusLabel().should("contain.text", "Draft");
-    PagesPage.getBackToPagesPageButton().click();
-    cy.url().should("include", "ghost/#/pages");
+  it("should create an untitled draft page when no information is provided", () => {
+    PagesPage.getTitleField().type("Test page #4");
+
+    PagesPage.getTitleField().should("have.value", "Test page #4");
   });
 
-  it("Delete some drafts pages", () => {
-    MenuPage.getPagesLink().click();
-    cy.wait(5000);
-    PagesListPage.getLastDraftPageTitle().click({ force: true });
-    cy.wait(5000);
-    cy.url().should("include", "ghost/#/editor/page");
+  it("should open settings menu", () => {
     PagesPage.getPostSettingsButton().click();
-    PagesPage.getDeleteButtonPage().contains("Delete").click();
-    PagesPage.getAcceptDeleteButtonPage()
-      .contains("Delete")
-      .click({ force: true });
-    cy.wait(5000);
+    PagesPage.getSettingsMenu().should("be.visible");
+  });
+
+  it("should open confirmation dialog clicking delete", () => {
+    PagesPage.getDeleteButtonPage().click();
+    PagesPage.getDeleteDialog().should("be.visible");
+  });
+
+  it("should delete page and redirect to /pages", () => {
+    PagesPage.getDeleteDialog().get(".gh-btn.gh-btn-red").click();
+    cy.url().should("include", "ghost/#/pages");
   });
 });

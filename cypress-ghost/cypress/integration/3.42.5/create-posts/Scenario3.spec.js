@@ -1,49 +1,65 @@
 /// <reference types='cypress' />
 import MenuPage from "../pageObjects/MenuPage";
-import PostsPage from "../pageObjects/PagesPage";
-import PostListPage from "../pageObjects/PostListPage";
+import PostsPage from "../pageObjects/PostsPage";
 
-context("Ghost - ", () => {
-  beforeEach(() => {
-    cy.login('3.42.5');
+context("Create post with bookmark", () => {
+  before(() => {
+    cy.login("3.42.5");
   });
 
-  it("creates empty post", () => {
-    cy.url().should("include", "ghost/#/site");
+  beforeEach(() => {
+    Cypress.Cookies.preserveOnce("ghost-admin-api-session");
+  });
+
+  afterEach(() => {
+    cy.screenshot();
+  });
+
+  it("should navigate to /posts from home", () => {
     MenuPage.getPostsLink().click();
-    cy.wait(5000);
     cy.url().should("include", "ghost/#/posts");
+  });
+
+  it("should navigate to post editor by clicking new post button", () => {
     PostsPage.getNewPostButton().click();
     cy.url().should("include", "ghost/#/editor/post");
-    PostsPage.getTitleField().click();
-    PostsPage.getTitleField().click();
-    PostsPage.getBackToPostsPageButton().click();
-    cy.wait(5000);
   });
 
-  it("fills title and adds bookmark", () => {
-    MenuPage.getPostsLink().click();
-    cy.wait(5000);
-    PostListPage.getLastDraftPost().click({ force: true });
-    cy.wait(3000);
-    cy.url().should("include", "ghost/#/editor/post");
-    PostsPage.getTitleField().clear().type("Test post #3 with Bookmark");
-    PostsPage.getPostUnformattedContentField().click();
-    cy.wait(1000);
-    PostsPage.getAddCardButton().click();
-    cy.wait(1000);
-    PostsPage.getBookmarkOption().click({ force: true });
-    cy.focused().type("https://biblioteca.uniandes.edu.co/");
-    PostsPage.getHearderStatusLabel().click();
-    cy.wait(3000);
-    PostsPage.getHearderStatusLabel().should("contain.text", "Draft");
-    PostsPage.getBackToPostsPageButton().click();
-    cy.url().should("include", "ghost/#/posts");
-    //this is a workaround given that cypress will break if we use the filtering manu on top of the page
-    //due to that menu triggering an API call from a different domain
-    PostListPage.getLastDraftPostTitle().should(
-      "contain.text",
+  it("should fill inputs in post editor", () => {
+    PostsPage.getTitleField().type("Test post #3 with Bookmark");
+
+    PostsPage.getTitleField().should(
+      "have.value",
       "Test post #3 with Bookmark"
     );
+  });
+
+  it("should open widgets menu", () => {
+    PostsPage.getContentField().click();
+
+    cy.wait(500);
+
+    PostsPage.getAddCardButton().click();
+    PostsPage.getCardMenu().should("be.visible");
+  });
+
+  it("should add bookmark field to content", () => {
+    PostsPage.getBookmarkOption().click();
+
+    PostsPage.getBookmarkInput().type("https://biblioteca.uniandes.edu.co/");
+    PostsPage.getBookmarkInput().should("exist");
+  });
+
+  it("should open publish dialog when publish button is clicked", () => {
+    PostsPage.getPublishTrigger().click();
+
+    PostsPage.getPublishMenu().should("be.visible");
+  });
+
+  it("should publish post", () => {
+    PostsPage.getSetItLiveOption().click();
+    PostsPage.getPublishButton().click();
+
+    PostsPage.getPublishButton().should("contain.text", "Published");
   });
 });

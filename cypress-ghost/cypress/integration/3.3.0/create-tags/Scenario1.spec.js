@@ -13,6 +13,10 @@ context("Create Public tag only using name", () => {
     Cypress.Cookies.preserveOnce("ghost-admin-api-session");
   });
 
+  afterEach(() => {
+    cy.screenshot();
+  });
+
   it("should navigate to /tags by clicking menu button", () => {
     MenuPage.getTagsLink().click();
     cy.url().should("include", "/ghost/#/tags");

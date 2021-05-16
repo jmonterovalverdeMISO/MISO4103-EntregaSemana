@@ -4,47 +4,54 @@ import MenuPage from "../pageObjects/MenuPage";
 import TagListPage from "../pageObjects/TagListPage";
 import TagPage from "../pageObjects/TagPage";
 
-context('Create Public tag only using name', () => {
+context("Create Public tag only using name", () => {
   before(() => {
-    cy.login()
-  })
+    cy.login("3.42.5");
+  });
 
   beforeEach(() => {
-    Cypress.Cookies.preserveOnce('ghost-admin-api-session')
-  })
+    Cypress.Cookies.preserveOnce("ghost-admin-api-session");
+  });
 
-  it('should navigate to /tags by clicking menu button', () => {
+  afterEach(() => {
+    cy.screenshot();
+  });
+
+  it("should navigate to /tags by clicking menu button", () => {
     MenuPage.getTagsLink().click();
+    cy.url().should("include", "/ghost/#/tags");
+  });
 
-    cy.url().should('include', '/ghost/#/tags')
-  })
+  it("should navigate to public tags by clicking tab", () => {
+    TagListPage.getPublicTab().click();
+    TagListPage.getPublicTab().should("have.class", "gh-btn-group-selected");
+  });
 
-  it('should navigate to public tags by clicking tab', () => {
-    TagListPage.getPublicTab().click()
+  it("should navigate to new tags by clicking new tag button", () => {
+    TagListPage.getNewButton().click();
 
-    TagListPage.getPublicTab().should('have.class', 'gh-btn-group-selected')
-  })
+    cy.url().should("include", "/ghost/#/tags/new");
+  });
 
-  it('should navigate to new tags by clicking new tag button', () => {
-    TagListPage.getNewButton().click()
+  it("should fill to tag name", () => {
+    TagPage.getNameInput().type("New public tag", { force: true });
 
-    cy.url().should('include', '/ghost/#/tags/new')
-  })
+    TagPage.getNameInput().should("have.value", "New public tag");
+  });
 
-  it('should fill to tag name', () => {
-    TagPage.getNameInput().type('New public tag', { force: true })
+  it("should save tag by clicking save button", () => {
+    TagPage.getSaveButton().click();
 
-    TagPage.getNameInput().should('have.value', 'New public tag')
-  })
+    cy.visit("/ghost/#/tags");
+    TagListPage.getPublicTab().click();
+    cy.get(".gh-main").scrollTo("0%", "100%", {
+      easing: "linear",
+      ensureScrollable: false,
+    });
+    cy.wait(100);
 
-  it('should save tag by clicking save button', () => {
-    TagPage.getSaveButton().click()
-
-    cy.visit('/ghost/#/tags')
-    TagListPage.getPublicTab().click()
-    cy.get('.gh-main').scrollTo('0%', '100%', { easing: 'linear', ensureScrollable: false })
-    cy.wait(100)
-    
-    TagListPage.getLastTag().find('h3').should('contain.text', 'New public tag')
-  })
-})
+    TagListPage.getLastTag()
+      .find("h3")
+      .should("contain.text", "New public tag");
+  });
+});

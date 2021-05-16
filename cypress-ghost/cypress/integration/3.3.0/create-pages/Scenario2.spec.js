@@ -1,37 +1,49 @@
 /// <reference types='cypress' />
 import MenuPage from "../pageObjects/MenuPage";
 import PagesPage from "../pageObjects/PagesPage";
-import PagesListPage from "../pageObjects/PagesListPage";
 
-context("Create Page - ", () => {
-  beforeEach(() => {
-    cy.login('3.3.0');
+context("Create published page", () => {
+  before(() => {
+    cy.login("3.3.0");
   });
 
-  it("creates pages", () => {
-    cy.url().should("include", "ghost/#/site");
+  beforeEach(() => {
+    Cypress.Cookies.preserveOnce("ghost-admin-api-session");
+  });
+
+  afterEach(() => {
+    cy.screenshot();
+  });
+
+  it("should navigate to /pages from home", () => {
     MenuPage.getPagesLink().click();
-    cy.wait(5000);
     cy.url().should("include", "ghost/#/pages");
+  });
+
+  it("should navigate to page editor by clicking new page button", () => {
     PagesPage.getNewPageButton().click();
     cy.url().should("include", "ghost/#/editor/page");
-    PagesPage.getTitleField().click();
-    PagesPage.getBackToPagesPageButton().click();
-    cy.wait(5000);
   });
 
-  it("fills pages fields and publish", () => {
-    MenuPage.getPagesLink().click();
-    cy.wait(5000);
-    PagesListPage.getLastDraftPageTitle().click({ force: true });
-    cy.wait(5000);
-    cy.url().should("include", "ghost/#/editor/page");
-    PagesPage.getTitleField().clear().type("Test page #2");
-    PagesPage.getPageUnformattedContentField().type("Test content #2");
-    PagesPage.getPublishMenu().click();
-    // cy.wait(5000);
+  it("should fill inputs in page editor", () => {
+    PagesPage.getTitleField().type("Test page #2");
+    PagesPage.getContentField().click();
+    PagesPage.getContentField().type("Test content #2");
+
+    PagesPage.getTitleField().should("have.value", "Test page #2");
+    PagesPage.getContentField().should("contain.text", "Test content #2");
+  });
+
+  it("should open publish dialog when publish button is clicked", () => {
+    PagesPage.getPublishTrigger().click();
+
+    PagesPage.getPublishMenu().should("be.visible");
+  });
+
+  it("should publish page", () => {
     PagesPage.getSetItLiveOption().click();
     PagesPage.getPublishButton().click();
-    cy.wait(5000);
+
+    PagesPage.getPublishButton().should("contain.text", "Published");
   });
 });

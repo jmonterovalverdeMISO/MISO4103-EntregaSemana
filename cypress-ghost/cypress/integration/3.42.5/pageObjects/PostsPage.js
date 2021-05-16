@@ -13,8 +13,8 @@ class PostsPage {
     return cy.get('.koenig-editor__editor.__mobiledoc-editor');
   }
 
-  static getPostUnformattedContentField() {
-    return cy.get(".koenig-editor__editor.__mobiledoc-editor.__has-no-content");
+  static getContentField() {
+    return cy.get(".koenig-editor__editor");
   }
 
   static getHearderStatusLabel() {
@@ -39,8 +39,12 @@ class PostsPage {
     );
   }
 
-  static getPublishMenu() {
+  static getPublishTrigger() {
     return cy.get(".gh-publishmenu-trigger");
+  }
+
+  static getPublishMenu() {
+    return cy.get(".gh-publishmenu-dropdown");
   }
 
   static getSetItLiveOption() {
@@ -85,18 +89,32 @@ class PostsPage {
     );
   }
 
+  static getCardMenu() {
+    return cy.get('.koenig-cardmenu');
+  }
+
   static getBookmarkOption() {
-    return cy.get(
-      'div:contains("Bookmark").f-supersmall.tracked-1.fw3.ma0.mt1'
-    );
+    return cy.get('.koenig-cardmenu div:contains("Bookmark").f8');
+  }
+
+  static getBookmarkInput() {
+    return cy.get('input[name="url"]');
   }
 
   static getPostSettingsButton() {
     return cy.get(".post-settings");
   }
 
+  static getSettingsMenu() {
+    return cy.get(".settings-menu");
+  }
+
   static getTagsTextbox() {
     return cy.get("#tag-input").first();
+  }
+  
+  static getTagsDropdown() {
+    return cy.get('.ember-basic-dropdown-content');
   }
 
   static getFirstTagFromList() {

@@ -53,11 +53,9 @@ class PostListPage {
 
   static getLastPublishedPostTitle() {
     return cy
-      .get('span:contains("Published").gh-content-status-published')
+      .get(".gh-content-status-published")
       .first()
-      .parent()
-      .parent()
-      .parent()
+      .parents("li.gh-list-row")
       .find(".gh-content-entry-title");
   }
 }

@@ -1,52 +1,49 @@
 /// <reference types='cypress' />
 import MenuPage from "../pageObjects/MenuPage";
 import PostsPage from "../pageObjects/PostsPage";
-import PostListPage from "../pageObjects/PostListPage";
 
-context("Ghost - ", () => {
+context("Create scheduled post", () => {
+  before(() => {
+    cy.login("3.42.5");
+  });
+
   beforeEach(() => {
-    cy.login('3.42.5');
+    Cypress.Cookies.preserveOnce("ghost-admin-api-session");
   });
 
-  it("creates empty post", () => {
-    cy.url().should("include", "ghost/#/site");
-    MenuPage.getDirectNewPostLink().click();
-    cy.wait(5000);
-    cy.url().should("include", "ghost/#/editor/post");
-    PostsPage.getTitleField().click();
-    PostsPage.getTitleField().click();
-    PostsPage.getBackToPostsPageButton().click();
-    cy.wait(5000);
+  afterEach(() => {
+    cy.screenshot();
   });
 
-  it("fills title, plain contents and schedules publicaction of the post", () => {
+  it("should navigate to /posts from home", () => {
     MenuPage.getPostsLink().click();
-    cy.wait(5000);
-    PostListPage.getLastDraftPost().click({ force: true });
-    cy.wait(3000);
-    cy.url().should("include", "ghost/#/editor/post");
-    PostsPage.getTitleField().clear().type("Test post #4");
-    PostsPage.getPostUnformattedContentField().type("Test content #4");
-    PostsPage.getHearderStatusLabel().click();
-    cy.wait(3000);
-    PostsPage.getHearderStatusLabel().should("contain.text", "Draft");
-    PostsPage.getPublishMenu().click();
-    cy.wait(3000);
-    PostsPage.getPublishLaterOption().click();
-    PostsPage.getScheduleButton().click();
-    cy.wait(3000);
-
-    PostsPage.getHearderStatusLabelForScheduledPosts().should(
-      "contain.text",
-      "Scheduled to be published"
-    );
-    PostsPage.getBackToPostsPageButton().click();
     cy.url().should("include", "ghost/#/posts");
-    //this is a workaround given that cypress will break if we use the filtering manu on top of the page
-    //due to that menu triggering an API call from a different domain
-    PostListPage.getLastScheduledPostTitle().should(
-      "contain.text",
-      "Test post #4"
-    );
+  });
+
+  it("should navigate to post editor by clicking new post button", () => {
+    PostsPage.getNewPostButton().click();
+    cy.url().should("include", "ghost/#/editor/post");
+  });
+
+  it("should fill inputs in post editor", () => {
+    PostsPage.getTitleField().type("Test post #4");
+    PostsPage.getContentField().click();
+    PostsPage.getContentField().type("Test content #4");
+
+    PostsPage.getTitleField().should("have.value", "Test post #4");
+    PostsPage.getContentField().should("contain.text", "Test content #4");
+  });
+
+  it("should open publish dialog when publish button is clicked", () => {
+    PostsPage.getPublishTrigger().click();
+
+    PostsPage.getPublishMenu().should("be.visible");
+  });
+
+  it("should schedule post", () => {
+    PostsPage.getPublishLaterOption().click();
+    PostsPage.getPublishButton().click();
+
+    PostsPage.getPublishButton().should("contain.text", "Scheduled");
   });
 });

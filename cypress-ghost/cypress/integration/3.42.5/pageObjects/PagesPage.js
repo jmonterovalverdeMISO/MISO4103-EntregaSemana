@@ -2,24 +2,22 @@
 
 class PagesPage {
   static getNewPageButton() {
-    return cy.get('.gh-btn.gh-btn-green.ember-view[href="#/editor/page/"]').first();
+    return cy.get('.view-actions a[href="#/editor/page/"]');
   }
 
   static getTitleField() {
     return cy.get(".gh-editor-title");
   }
 
-  static getPageUnformattedContentField() {
-    return cy.get(".koenig-editor__editor.__mobiledoc-editor.__has-no-content");
+  static getContentField() {
+    return cy.get(".koenig-editor__editor");
   }
 
-  static getHearderStatusLabel() {
-    return cy.get(
-      ".flex.items-center.pl4.pr4.f8.nudge-left--1.h9.br2.br--right.bg-white>span>div"
-    );
+  static getHeaderStatusLabel() {
+    return cy.get(".gh-editor-header span");
   }
 
-  static getHearderStatusLabelForScheduledPages() {
+  static getHeaderStatusLabelForScheduledPages() {
     return cy.get(
       "div.flex.items-center.pl4.pr4.f8.nudge-left--1.h9.br2.br--right.bg-white>span>div>time"
     );
@@ -31,8 +29,12 @@ class PagesPage {
     );
   }
 
-  static getPublishMenu() {
+  static getPublishTrigger() {
     return cy.get(".gh-publishmenu-trigger");
+  }
+
+  static getPublishMenu() {
+    return cy.get(".gh-publishmenu-dropdown");
   }
 
   static getSetItLiveOption() {
@@ -86,13 +88,23 @@ class PagesPage {
   static getPostSettingsButton() {
     return cy.get(".post-settings");
   }
+  
+  static getSettingsMenu() {
+    return cy.get(".settings-menu");
+  }
+
+  static getDeleteDialog() {
+    return cy.get(".fullscreen-modal");
+  }
 
   static getDeleteButtonPage() {
-    return cy.get("form > .gh-btn > span");
+    return cy.get(".settings-menu .settings-menu-delete-button");
   }
+
   static getAcceptDeleteButtonPage() {
     return cy.get(".gh-btn.gh-btn-red.gh-btn-icon.ember-view");
   }
+
   static getCloseSettingsButton() {
     return cy.get(".close.settings-menu-header-action");
   }

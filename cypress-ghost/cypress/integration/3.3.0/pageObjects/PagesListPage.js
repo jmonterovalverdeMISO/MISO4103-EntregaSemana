@@ -41,13 +41,10 @@ class PagesListPage {
 
   static getLastDraftPageTitle() {
     return cy
-      .get(
-        'span:contains("Draft").gh-content-status-draft.gh-badge.gh-badge-purple.nowrap'
-      )
+      .get(".gh-content-status-draft")
+      .contains('Draft')
       .first()
-      .parent()
-      .parent()
-      .parent()
+      .parents("li.gh-list-row")
       .find(".gh-content-entry-title");
   }
 

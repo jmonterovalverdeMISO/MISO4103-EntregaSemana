@@ -1,42 +1,45 @@
 /// <reference types='cypress' />
 import MenuPage from "../pageObjects/MenuPage";
 import PostsPage from "../pageObjects/PostsPage";
+import PostListPage from "../pageObjects/PostListPage";
 
-context("Create Post - ", () => {
-  beforeEach(() => {
-    cy.login('3.3.0');
+context("Create draft post", () => {
+  before(() => {
+    cy.login("3.3.0");
   });
 
-  it("creates post", () => {
-    cy.url().should("include", "ghost/#/site");
+  beforeEach(() => {
+    Cypress.Cookies.preserveOnce("ghost-admin-api-session");
+  });
+
+  afterEach(() => {
+    cy.screenshot();
+  });
+
+  it("should navigate to /posts from home", () => {
     MenuPage.getPostsLink().click();
-    cy.wait(5000);
     cy.url().should("include", "ghost/#/posts");
+  });
+
+  it("should navigate to post editor by clicking new page button", () => {
     PostsPage.getNewPostButton().click();
     cy.url().should("include", "ghost/#/editor/post");
-    PostsPage.getTitleField().click();
-    PostsPage.getBackToPostsPageButton().click();
-    cy.wait(5000);
   });
 
-  it("fills post fields", () => {
-    MenuPage.getPostsLink().click();
-    cy.wait(5000);
-    PostListPage.getLastDraftPost().click({ force: true });
-    cy.wait(5000);
-    cy.url().should("include", "ghost/#/editor/post");
-    PostsPage.getTitleField().clear().type("Test post #1");
-    PostsPage.getPostUnformattedContentField().type("Test content #1");
-    PostsPage.getHearderStatusLabel().click();
-    cy.wait(5000);
-    PostsPage.getHearderStatusLabel().should("contain.text", "Draft");
+  it("should create an untitled draft post when no information is provided", () => {
+    PostsPage.getTitleField().click();
     PostsPage.getBackToPostsPageButton().click();
-    cy.url().should("include", "ghost/#/posts");
-    //this is a workaround given that cypress will break if we use the filtering manu on top of the page
-    //due to that menu triggering an API call from a different domain
-    PostListPage.getLastDraftPostTitle().should(
-      "contain.text",
-      "Test post #1"
-    );
+
+    PostListPage.getLastDraftPostTitle().should("contain.text", "(Untitled)");
+  });
+
+  it("should fill inputs and update information page", () => {
+    PostListPage.getLastDraftPostTitle().click({ force: true });
+
+    PostsPage.getTitleField().clear().type("Test page #1");
+    PostsPage.getContentField().type("Test content #1");
+
+    PostsPage.getBackToPostsPageButton().click();
+    PostListPage.getLastDraftPostTitle().should("contain.text", "Test page #1");
   });
 });

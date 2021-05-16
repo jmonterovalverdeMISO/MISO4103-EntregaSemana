@@ -24,7 +24,7 @@ const versions = {
     LoginPage.getSignInButon().click()
   },
   '3.42.5': (user, password) => {
-    const LoginPage = require("../integration/3.3.0/pageObjects/LoginPage");
+    const LoginPage = require("../integration/3.42.5/pageObjects/LoginPage");
 
     Cypress.config('baseUrl', Cypress.env('GHOST_3_42_5'))
 
@@ -39,6 +39,10 @@ const versions = {
 Cypress.Commands.add('login', (version) => {
   if (!version) {
     throw 'No ghost version provided';
+  }
+
+  if (!versions[version]) {
+    throw 'No login fn found for that version';
   }
 
   const user = Cypress.env('GHOST_USER') || 'user@test.com';
