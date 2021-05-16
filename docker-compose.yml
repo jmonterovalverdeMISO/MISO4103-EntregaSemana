@@ -15,6 +15,10 @@ services:
       server__port: 3001
       url: http://localhost:3001
       NODE_ENV: development
+    healthcheck:
+      test: ['CMD', 'ping', '-c', '1', '-p', '3001', 'localhost']
+      retries: 3
+      start_period: 10s
     ports:
       - 3001:3001
     networks:
@@ -31,6 +35,10 @@ services:
       server__port: 3002
       url: http://localhost:3002
       NODE_ENV: development
+    healthcheck:
+      test: ['CMD', 'ping', '-c', '1', '-p', '3002', 'localhost']
+      retries: 3
+      start_period: 10s
     ports:
       - 3002:3002
     networks:
@@ -48,8 +56,10 @@ services:
     volumes:
       - ./cypress-ghost:/e2e:rw
     depends_on: 
-      - ghost_3_3_0
-      - ghost_3_42_5
+      ghost_3_3_0:
+        condition: service_healthy
+      ghost_3_42_5:
+        condition: service_healthy
     networks:
       - ghost_dev
 
@@ -65,8 +75,10 @@ services:
       GHOST_USER: user@test.com
       GHOST_PASS: dev1234567
     depends_on: 
-      - ghost_3_3_0
-      - ghost_3_42_5
+      ghost_3_3_0:
+        condition: service_healthy
+      ghost_3_42_5:
+        condition: service_healthy
     volumes: 
       - ./kraken-ghost:/app
     networks:
@@ -77,14 +89,10 @@ services:
     image: vrt-test
     build:
       context: .
-      dockerfile: ./Dockerfile-vrt
-    environment:
-      GHOST_3_42_5: http://ghost_3_42_5:3002
-      GHOST_3_3_0: http://ghost_3_3_0:3001
-      GHOST_USER: user@test.com
-      GHOST_PASS: dev1234567
-    depends_on: 
-      - cypress
+      dockerfile: ./Dockerfile-VRT
+    depends_on:
+      cypress:
+        condition: service_completed_successfully
     volumes: 
       - ./vrt-results/report:/report:rw
       - ./cypress-ghost/cypress/screenshots:/screenshots:rw

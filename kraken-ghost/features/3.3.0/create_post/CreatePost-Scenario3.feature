@@ -1,14 +1,8 @@
 Feature: Create Post 3
   @user1 @web
-<<<<<<< HEAD:kraken-ghost/features/create_post/CreatePost-Scenario3.feature
-  Scenario: Create a new Post from New Post link, with bookmark field and save it as draft
-    Given I as a logged user navigate to "/posts"
-    Then I am in page "/posts"
-=======
   Scenario: Create a new Post from New Post link, with bookmark field
     Given I log in at "3.3.0"
     When I go to page "/posts"
->>>>>>> 651bcc55a6952b1704d28f875b662768e7ba3c49:kraken-ghost/features/3.3.0/create_post/CreatePost-Scenario3.feature
 
     When I click on element having css selector ".gh-btn.gh-btn-green.ember-view[href="#/editor/post/"]"
     Then I am in page "/editor/post"
