@@ -40,7 +40,7 @@ context("Create scheduled page", () => {
     PagesPage.getPublishMenu().should("exist");
   });
 
-  it("should publish page", () => {
+  it("should schedule page", () => {
     PagesPage.getPublishLaterOption().click();
     PagesPage.getPublishButton().click();
 
