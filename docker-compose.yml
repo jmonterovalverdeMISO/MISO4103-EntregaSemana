@@ -74,7 +74,7 @@ services:
 
   vtr-test:
     container_name: vtr-test
-    image: vtr-test
+    image: vrt-test
     build:
       context: .
       dockerfile: ./Dockerfile-vrt
