@@ -76,11 +76,30 @@ class PagesPage {
       "button.koenig-plus-menu-button.flex.justify-center.items-center.relative.w9.h9.ba.b--midlightgrey-l2.bg-white.br-100.anim-normal"
     );
   }
+  static getPlusMenu()
+  {
+	  return cy.get('.koenig-plus-menu-button');
+  }
+  static getAddHtmlCode()
+  {
+	  return cy.get('.koenig-cardmenu > :nth-child(4)');
+  }
+  static getEditorHtmlCode()
+  {
+	  return cy.get('.koenig-card-html--editor.ember-view');
+  }
+  
+  static getMainPanel()
+  {
+	   return cy.get('.gh-koenig-editor-pane');
+  }
+  static getMessageViewPage()
+  {
+	  return cy.get('.gh-notification-actions > a');
+  }
 
   static getBookmarkOption() {
-    return cy.get(
-      'div:contains("Bookmark").f-supersmall.tracked-1.fw3.ma0.mt1'
-    );
+    return cy.get('[title="Bookmark"]');
   }
 
   static getPostSettingsButton() {

@@ -11,7 +11,7 @@ Before do
   options.add_argument('--headless')
   options.add_argument("--remote-debugging-port=9222")
 
-  @driver = Selenium::WebDriver.for((ENV['BROWSER'] || 'chrome').to_sym, options: options)
+  @driver = Selenium::WebDriver.for((ENV['BROWSER']).to_sym)
 end
 
 Given(/^I navigate to page "([^\"]*)"$/) do |web_url|

@@ -17,8 +17,8 @@ import LoginPage from "../pageObjects/LoginPage"
 Cypress.Commands.add('login', () => {
     cy.visit('/ghost/#/signin')
 
-    const user = Cypress.env('GHOST_USER') || 'user@test.com';
-    const password = Cypress.env('GHOST_PASS') || 'dev1234567';
+    const user = Cypress.env('GHOST_USER') || 'jc.dazam1@uniandes.edu.co';
+    const password = Cypress.env('GHOST_PASS') || 'uniandes1234';
 
     LoginPage.getUserNameField().type(user)
     LoginPage.getPasswordField().type(password)
