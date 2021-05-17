@@ -42,7 +42,7 @@ if ENV["ADB_DEVICE_ARG"].nil?
 
   Then(/^I am in page "([^\"]*)"$/) do |path|
     $url_variable = @driver.current_url
-    raise 'ERROR: Invalid URL' unless "#{ghost_url}/ghost/##{path}" == $url_variable
+    raise 'ERROR: Invalid URL' unless $url_variable.include? path
   end
 
   Then(/^I am logged in/) do
@@ -74,5 +74,37 @@ if ENV["ADB_DEVICE_ARG"].nil?
     puts($url_variable)
     @driver.navigate.to $url_variable
     sleep 2
+  end
+
+  Then(/^I click on first element with css selector "(.*?)"$/) do |selector|
+    @driver.find_elements(:css, selector)[0].click    
+  end
+
+  Then(/^I clear input field having css selector "(.*?)"$/) do |selector|
+    @driver.find_element(:css, selector).clear
+  end
+
+  Then(/^I press right arrow key into input field having css selector "(.*?)"$/) do |selector|
+    @driver.find_element(:css, selector).send_keys(:arrow_right) 
+  end
+
+  Then(/^I click on element contained in css selector "(.*?)" with title "(.*?)"$/) do |selector, text|
+    elements = @driver.find_elements(:css, selector)
+    elements.each do |element|
+      attr = element.attribute('title')
+      if attr == text
+        element.click
+        break
+      end
+    end
+  end
+
+  Then(/^I click on element having css selector edit "(.*?)"$/) do |selector|
+    @driver.find_element(:css, selector).click
+  end
+
+  Then(/^I scroll to element with css selector "(.*?)"$/) do |selector|
+    element = @driver.find_element(:css, selector)
+    @driver.execute_script("arguments[0].scrollIntoView();", element);	
   end
 end

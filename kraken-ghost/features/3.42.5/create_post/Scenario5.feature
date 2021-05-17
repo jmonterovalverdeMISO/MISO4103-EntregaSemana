@@ -4,7 +4,7 @@ Feature: Create Post
     Given I log in at "3.42.5" 
     When I go to page "/posts"
 
-    When I click on element having css selector ".gh-btn.gh-btn-green.ember-view[href="#/editor/post/"]"
+    When I click on element having css selector ".gh-btn.gh-btn-green.ember-view[href='#/editor/post/']"
     Then I am in page "/editor/post"
 
     When I click on element having css selector ".post-settings"
@@ -16,10 +16,10 @@ Feature: Create Post
     Then I should see text "Draft"
 
     
-    When I click on element having css selector ".blue.link.fw4.flex.items-center.ember-view[href="#/posts/"]"
+    When I click on element having css selector ".blue.link.fw4.flex.items-center.ember-view[href='#/posts/']"
     Then I am in page "/posts"
 
-    When I click on element having css selector ".gh-contentfilter-menu.gh-contentfilter-type.ember-view"
-    When I click on element having css selector "li.ember-power-select-option[data-option-index="1"]"
+    When I click on element having css selector ".gh-contentfilter-tag"
+    When I click on element having css selector "li.ember-power-select-option[data-option-index='1']"
     Then I should see text "Test post #5 with tags"
 

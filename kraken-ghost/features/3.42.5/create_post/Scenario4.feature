@@ -4,7 +4,7 @@ Feature: Create Post
     Given I log in at "3.42.5" 
     When I go to page "/posts"
 
-    When I click on element having css selector ".gh-btn[href="#/editor/post/"]"
+    When I click on element having css selector ".gh-btn[href='#/editor/post/']"
     Then I am in page "/editor/post"
 
     When I enter "Test post #4" into input field having css selector ".gh-editor-title"
@@ -18,7 +18,7 @@ Feature: Create Post
     When I click on element having css selector ".gh-publishmenu-button"
     Then I should see text "Scheduled"
 
-    When I click on element having css selector ".blue.link.fw4.flex.items-center.ember-view[href="#/posts/"]"
+    When I click on element having css selector ".blue.link.fw4.flex.items-center.ember-view[href='#/posts/']"
     Then I am in page "/posts"
 
     When I click on element having css selector ".gh-contentfilter-menu.gh-contentfilter-type"

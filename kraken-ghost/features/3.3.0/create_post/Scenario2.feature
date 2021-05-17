@@ -17,6 +17,3 @@ Feature: Create Post 2
     When I click on element having css selector ".blue.link.fw4.flex.items-center.ember-view[href="#/posts/"]"
     Then I am in page "/posts"
     Then I should see text "Test post #2"
-
-    When I go to page "/site"
-    Then I should see text "Test post #2"

@@ -4,7 +4,7 @@ Feature: Create Post 2
     Given I log in at "3.42.5" 
     When I go to page "/posts"
 
-    When I click on element having css selector ".gh-btn.gh-btn-green.ember-view[href="#/editor/post/"]"
+    When I click on element having css selector ".gh-btn.gh-btn-green.ember-view[href='#/editor/post/']"
     Then I am in page "/editor/post"
 
     When I enter "Test post #2" into input field having css selector ".gh-editor-title"
@@ -14,9 +14,6 @@ Feature: Create Post 2
     When I click on element having css selector ".gh-publishmenu-button"
     Then I should see text "Published"
 
-    When I click on element having css selector ".blue.link.fw4.flex.items-center.ember-view[href="#/posts/"]"
+    When I click on element having css selector ".blue.link.fw4.flex.items-center.ember-view[href='#/posts/']"
     Then I am in page "/posts"
-    Then I should see text "Test post #2"
-
-    When I go to page "/site"
     Then I should see text "Test post #2"

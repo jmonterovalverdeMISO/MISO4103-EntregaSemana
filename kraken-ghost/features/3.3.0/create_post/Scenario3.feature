@@ -1,7 +1,7 @@
 Feature: Create Post 3
   @user1 @web
   Scenario: Create a new Post from New Post link, with bookmark field
-    Given I log in at "3.42.5" 
+    Given I log in at "3.3.0"
     When I go to page "/posts"
 
     When I click on element having css selector ".gh-btn.gh-btn-green.ember-view[href="#/editor/post/"]"
@@ -13,7 +13,6 @@ Feature: Create Post 3
     When I click on element having css selector "div.f-supersmall.tracked-1.fw3.ma0.mt1"
     Then I should see text "Draft"
     
-    #When I enter "https://biblioteca.uniandes.edu.co/" into input field having css selector ".miw-100[name="url"]"
     When I enter "https://biblioteca.uniandes.edu.co/" into active field
     When I click on element having css selector ".flex.items-center.pl4.pr4.f8.nudge-left--1.h9.br2.br--right.bg-white>span>div"
     Then I should see text "Draft"
