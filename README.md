@@ -34,6 +34,8 @@ En [este documento](https://github.com/jmonterovalverdeMISO/MISO4103-EntregaSema
 
 Todas las funcionalidades tinen escenarios para ser probadas en ambas versiones de Ghost.
 
+
+
 # Correr pruebas (Headless) :rocket:
 Para ejecutar la suite de pruebas puedes escoger entre los frameworks disponibles Cypress o Kraken.
 
@@ -69,7 +71,8 @@ Para realizar una nueva ejecución limpia de la suite de pruebas se recomienda r
 2. `docker-compose -f ./docker-compose.cypress.yml up -d`
 
 
-## Ver ejecución de pruebas
+
+# Ver ejecución y resultados :heavy_check_mark:
 Para visualizar el progreso de un contenedor puedes ejecutar los siguientes comandos en una consola:
 Notas: 
 - La composición y la ejecución de los escenarios tarda un tiempo dependiendo de la capacidad de su máquina local, por lo que si en el primer intento no le salen logs, dele unos segundos más para que el componente se ejecute
