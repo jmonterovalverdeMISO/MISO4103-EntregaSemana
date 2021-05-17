@@ -27,6 +27,7 @@ context("Edit published post title", () => {
   });
 
   it("should navigate to /posts from home", () => {
+    cy.wait(3000);
     MenuPage.getPostsLink().click();
     cy.url().should("include", "ghost/#/posts");
   });

@@ -27,6 +27,9 @@
     <None Update="ReportsBaseFile\missing.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="ReportsBaseFile\README.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="ReportsBaseFile\report.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

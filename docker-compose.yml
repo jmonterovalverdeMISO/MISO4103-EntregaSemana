@@ -85,11 +85,11 @@ services:
       - ghost_dev
 
   vtr-test:
-    container_name: vrt-test
+    container_name: vtr-test
     image: vrt-test
     build:
       context: .
-      dockerfile: ./Dockerfile-VRT
+      dockerfile: ./Dockerfile-vrt
     depends_on:
       cypress:
         condition: service_completed_successfully

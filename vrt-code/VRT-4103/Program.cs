@@ -23,7 +23,7 @@ namespace vrt_4103
             }
             
 
-                decimal threadshold = Convert.ToDecimal(ConfigurationManager.AppSettings["VariationThreadhold"].ToString());
+                decimal threadshold = Convert.ToDecimal(ConfigurationManager.AppSettings["Variationthreshold"].ToString());
             //directory creation
             if (Directory.Exists(paths.BasePath))
             {
@@ -50,6 +50,10 @@ namespace vrt_4103
             Directory.CreateDirectory(paths.CurrentImagesPath);
             Console.WriteLine("Creating Differences path: {0}", paths.DifferencesImagesPath);
             Directory.CreateDirectory(paths.DifferencesImagesPath);
+
+            Console.WriteLine("Copying README File");
+            File.Copy(@"/ReportsBaseFile/README.md", paths.BasePath + @"/README.md");
+
             Console.WriteLine("Starting Comparison!");
 
             string scenarioReportList = "";
@@ -152,11 +156,11 @@ namespace vrt_4103
                         scenario.percentageChange = decimal.Round((pixelDiff/fullsize) * 100, 2);
                         if (scenario.percentageChange >= threadshold)
                         {
-                            scenario.Comment = string.Format("Difference is bigger than Threadhold. Difference is: {0} %", scenario.percentageChange);
+                            scenario.Comment = string.Format("Difference is bigger than threshold. Difference is: {0} %", scenario.percentageChange);
                         }
                         else
                         {
-                            scenario.Comment = string.Format("Difference under the change threadhold. Difference is: {0} %", scenario.percentageChange);
+                            scenario.Comment = string.Format("Difference under the change threshold. Difference is: {0} %", scenario.percentageChange);
                         }
                         scenario.DiffImagePath = paths.DifferencesImagesPath + @"/result_" + scenario.StepName + ".png";
                         resultImage.Save(scenario.DiffImagePath, ImageFormat.Png);
@@ -197,7 +201,7 @@ namespace vrt_4103
 
             File.Copy(@"/ReportsBaseFile/index.css", paths.BasePath + @"/index.css");
             File.WriteAllLines(paths.BasePath+@"/report.html", new string[]{ reportContent });
-            Console.WriteLine("Starting ended!");
+            Console.WriteLine("Comparing ended!");
         }
 
     }

@@ -23,6 +23,7 @@ context("Edit draft page", () => {
   });
 
   it("should navigate to /pages from home", () => {
+    cy.wait(3000);
     MenuPage.getPagesLink().click();
     cy.url().should("include", "ghost/#/pages");
   });
