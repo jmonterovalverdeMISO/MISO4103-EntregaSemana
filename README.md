@@ -1,4 +1,4 @@
-# Entrega Semana 5 - Pruebas e2e
+# Entrega Semana 6 - Pruebas e2e
 ## Ghost 
 Proyecto en el que se elabora una suite de pruebas e2e para Ghost CMS (para las versiones 3.3.0 y 3.42.5) utilizando como API de automatización [Cypress](https://www.cypress.io/) y [Kraken](https://thesoftwaredesignlab.github.io/KrakenMobile/).
 <br/>
