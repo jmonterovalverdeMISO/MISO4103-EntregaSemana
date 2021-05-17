@@ -57,7 +57,7 @@ Para realizar una nueva ejecución limpia de la suite de pruebas se recomienda r
 1. `docker-compose down`
 2. `docker-compose -f ./docker-compose.kraken.yml up -d`
 
-## Cypress :robot:
+## Cypress (y VRT) :robot: 
 1. Verificar que el servicio de docker está corriendo.
 2. Ejecutar `docker-compose -f ./docker-compose.cypress.yml build` en una consola para construir las imagenes de ghost y kraken. 
 3. Ejecutar `docker-compose -f ./docker-compose.cypress.yml up -d` en una consola para iniciar infraestructura de pruebas.
