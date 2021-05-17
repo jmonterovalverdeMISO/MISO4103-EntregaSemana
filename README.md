@@ -72,7 +72,7 @@ Para realizar una nueva ejecución limpia de la suite de pruebas se recomienda r
 
 
 
-# Ver ejecución y resultados :heavy_check_mark:
+# Ver ejecución y reportes :heavy_check_mark:
 Para visualizar el progreso de un contenedor puedes ejecutar los siguientes comandos en una consola:
 Notas: 
 - La composición y la ejecución de los escenarios tarda un tiempo dependiendo de la capacidad de su máquina local, por lo que si en el primer intento no le salen logs, dele unos segundos más para que el componente se ejecute
@@ -83,9 +83,17 @@ Notas:
 3. Ghost `docker logs ghost`
 4. VRT - `docker logs vrt-test`
 
-## Ver resultados
-Una vez la ejecución de las pruebas hayan finalizado los resultados se guardan en las siguientes direcciones segun el suite de pruebas
+## Ver reportes
+Una vez la ejecución de las pruebas hayan finalizado los resultados se guardan en las siguientes direcciones segun el suite de pruebas segun el framework utilizado
 
 1. Kraken `kraken-ghost/reports`
 2. Cypress `cypress-ghost/cypress`
-3. VRT `vrt-results\report`
+3. VRT `vrt-results/report`
+
+## Ver reporte de Pruebas de Regresión Visual :paintbrush:
+Este es generado a través de Cypress por esta razón se debe ejecutar primero este suite de pruebas. Una vez finalizado a través de `vrt-results/report/index.html` se puede visualizar los resultados de las pruebas de regresión visual
+
+![Screenshot from 2021-05-16 22-11-44](https://user-images.githubusercontent.com/78863809/118427858-ccf52e00-b693-11eb-85c2-b1c56c9a727a.png)
+
+
+
