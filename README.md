@@ -35,18 +35,38 @@ En [este documento](https://github.com/jmonterovalverdeMISO/MISO4103-EntregaSema
 Todas las funcionalidades tinen escenarios para ser probadas en ambas versiones de Ghost.
 
 # Correr pruebas (Headless) :rocket:
-## Pasos para despliegue
+Para ejecutar la suite de pruebas puedes escoger entre los frameworks disponibles Cypress o Kraken.
+
+## Antes de empezar
 1. Instalar [docker](https://www.docker.com/get-started) segun tu sistema operativo
 2. Clonar este repositorio en su máquina local. Si necesita ayuda puede consultar este (link)[https://docs.github.com/es/github/creating-cloning-and-archiving-repositories/cloning-a-repository]
 3. Abrir una consola que esté ubicada sobre el folder del repositorio que clonó en el paso 2.
-4. Verificar que el servicio de docker está corriendo.
-5. Ejecutar `docker-compose build` en una consola para construir las imagenes de VRT, ghost, cypress y kraken. 
-6. Ejecutar `docker-compose up -d` en una consola para iniciar infraestructura de pruebas.
+
+## Kraken :octopus:
+1. Verificar que el servicio de docker está corriendo.
+2. Ejecutar `docker-compose -f ./docker-compose.kraken.yml build` en una consola para construir las imagenes de ghost y kraken. 
+3. Ejecutar `docker-compose -f ./docker-compose.kraken.yml up -d` en una consola para iniciar infraestructura de pruebas.
 
 Una vez ejecutados los pasos se desplegarán automaticamente la infraestructura con Ghost y se ejecutaran los suite de pruebas headless.
 
-![image](https://user-images.githubusercontent.com/78028512/117737241-b2641600-b1b6-11eb-9c7d-4e073a7fd0e9.png)
+### Reiniciar ejecución de pruebas
+Para realizar una nueva ejecución limpia de la suite de pruebas se recomienda remover los contenedores, ejecutando en la consola:
 
+1. `docker-compose down`
+2. `docker-compose -f ./docker-compose.kraken.yml up -d`
+
+## Cypress :robot:
+1. Verificar que el servicio de docker está corriendo.
+2. Ejecutar `docker-compose -f ./docker-compose.cypress.yml build` en una consola para construir las imagenes de ghost y kraken. 
+3. Ejecutar `docker-compose -f ./docker-compose.cypress.yml up -d` en una consola para iniciar infraestructura de pruebas.
+
+Una vez ejecutados los pasos se desplegarán automaticamente la infraestructura con Ghost y se ejecutaran los suite de pruebas headless.
+
+### Reiniciar ejecución de pruebas
+Para realizar una nueva ejecución limpia de la suite de pruebas se recomienda remover los contenedores, ejecutando en la consola:
+
+1. `docker-compose down`
+2. `docker-compose -f ./docker-compose.cypress.yml up -d`
 
 
 ## Ver ejecución de pruebas
@@ -66,9 +86,3 @@ Una vez la ejecución de las pruebas hayan finalizado los resultados se guardan 
 1. Kraken `kraken-ghost/reports`
 2. Cypress `cypress-ghost/cypress`
 3. VRT `vrt-results\report`
-
-## Reiniciar ejecución de pruebas
-Para realizar una nueva ejecución limpia de la suite de pruebas se recomienda remover los contenedores, ejecutando en la consola:
-
-1. `docker-compose down`
-2. `docker-compose up -d`
