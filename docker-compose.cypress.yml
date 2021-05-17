@@ -1,0 +1,79 @@
+version: '3.4'
+
+networks:
+  ghost_dev:
+    name: ghost_dev
+services:
+  ghost_3_3_0:
+    container_name: ghost_3_3_0
+    image: ghost-test:3.3.0
+    build:
+      context: .
+      dockerfile: ./Dockerfile-ghost-3.3.0
+    environment:
+      spam__user_login__freeRetries: 1000
+      server__port: 3001
+      url: http://localhost:3001
+      NODE_ENV: development
+    healthcheck:
+      test: ['CMD', 'ping', '-c', '1', '-p', '3001', 'localhost']
+      retries: 3
+      start_period: 10s
+    ports:
+      - 3001:3001
+    networks:
+      - ghost_dev
+
+  ghost_3_42_5:
+    container_name: ghost_3_42_5
+    image: ghost-test:3.42.5
+    build:
+      context: .
+      dockerfile: ./Dockerfile-ghost-3.42.5
+    environment:
+      spam__user_login__freeRetries: 1000
+      server__port: 3002
+      url: http://localhost:3002
+      NODE_ENV: development
+    healthcheck:
+      test: ['CMD', 'ping', '-c', '1', '-p', '3002', 'localhost']
+      retries: 3
+      start_period: 10s
+    ports:
+      - 3002:3002
+    networks:
+      - ghost_dev
+
+  cypress:
+    container_name: cypress-chrome
+    image: cypress/included:7.3.0
+    environment:
+      CYPRESS_GHOST_3_42_5: http://ghost_3_42_5:3002
+      CYPRESS_GHOST_3_3_0: http://ghost_3_3_0:3001
+      CYPRESS_GHOST_USER: user@test.com
+      CYPRESS_GHOST_PASS: dev1234567
+    working_dir: /e2e
+    volumes:
+      - ./cypress-ghost:/e2e:rw
+    depends_on: 
+      ghost_3_3_0:
+        condition: service_healthy
+      ghost_3_42_5:
+        condition: service_healthy
+    networks:
+      - ghost_dev
+
+  vtr-test:
+    container_name: vtr-test
+    image: vrt-test
+    build:
+      context: .
+      dockerfile: ./Dockerfile-vrt
+    depends_on:
+      cypress:
+        condition: service_completed_successfully
+    volumes: 
+      - ./vrt-results/report:/report:rw
+      - ./cypress-ghost/cypress/screenshots:/screenshots:rw
+    networks:
+      - ghost_dev

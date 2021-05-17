@@ -47,7 +47,7 @@ context("Create post with tags", () => {
 
   it("should add tag clicking an option", () => {
     PostsPage.getFirstTagFromList().click();
-    PostsPage.getTagsTextbox().should("contain.text", "Getting Started");
+    PostsPage.getTagsTextbox().find('li').should("have.length", 1);
   });
 
   it("should open publish dialog when publish button is clicked", () => {
